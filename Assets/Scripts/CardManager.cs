@@ -6,11 +6,18 @@ using UnityEngine;
 public class CardManager : MonoBehaviour
 {
     [SerializeField] private Text text;
+    [SerializeField] private Group group;
+
 
     private string card1;
     public void UpdateDisplayUI(PairData pairData)
     {
         Debug.Log(pairData.PairName);
+        
+        if (group == Group.Group1)
+        {
+
+        }
 
         if (card1 == null)
         {
