@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CardManager : MonoBehaviour
 {
-    [SerializeField] private Text bonusName;
+    [SerializeField] private Text text;
 
     private string card1;
     public void UpdateDisplayUI(PairData pairData)
@@ -22,11 +22,12 @@ public class CardManager : MonoBehaviour
             if (pairData.PairName == card1)
             {
                 Debug.Log("correct");
-
+                text.text = "correct";
             }
             else
             {
                 Debug.Log("notCorrect");
+                text.text = "notCorrect";
             }
 
             card1 = null;
