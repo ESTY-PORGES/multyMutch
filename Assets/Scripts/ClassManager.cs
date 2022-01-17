@@ -12,35 +12,24 @@ public class ClassManager : MonoBehaviour
     public bool ScoreChanged;
     [SerializeField] private CardManager cardManager;
     public int index;
-    //private ClassData classData1;
-    //public string NameofClass => nameofClass;
-
-    //public int ScoreofClass => scoreofClass;
+    
 
     private void Start()
     {
-        cardManager.OnScoreChanged += AddScoreToData;
+       
        
     }
     public void UpdateDisplayUI(ClassData classData)
     {
         nameofClass = classData.ClassName;
-        scoreofClass = classData.score;
-       
         Debug.Log(nameofClass);
         Debug.Log(scoreofClass);
-        scoreClass[classData.index] = scoreofClass;
-
-
-
-    }
-
-    private void AddScoreToData(int score/*, ClassData classData*/)
-    {
-       
-        //classData.score = scoreofClass;
+        scoreClass[classData.index]+= scoreofClass;
+        scoreofClass = 0;
 
     }
+
+   
 
 
 }

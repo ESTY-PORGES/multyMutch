@@ -8,28 +8,23 @@ using UnityEngine.Events;
 public class CardManager : MonoBehaviour
 {
 
-    public UnityAction<int/*, ClassData*/> OnScoreChanged;
 
     [SerializeField] private Text text;
     [SerializeField] private Text scoreText;
-    //[SerializeField] private Group group;
+  
     [SerializeField] private bool firstImageSelected;
-    //[SerializeField] private int classInt;
-
+  
     [SerializeField] private string card1;
     [SerializeField] private ClassManager classManager;
-    //[SerializeField] private ClassData classData2;
+ 
 
     private void Start()
     {
        
     }
-    public void UpdateDisplayUI(PairData pairData/*, ClassData classData*/)
+    public void UpdateDisplayUI(PairData pairData)
     {
        
-
-        //Debug.Log(classManager.NameofClass);
-        //Debug.Log(classManager.ScoreofClass);
 
         if (firstImageSelected == false && pairData.Group == 1)
         {
@@ -49,7 +44,7 @@ public class CardManager : MonoBehaviour
                 Debug.Log("correct");
                 text.text = "correct";
                 StartCoroutine(InitializeText());
-                AddScore(/*classData*/);
+                AddScore();
             }
 
             else
@@ -64,38 +59,16 @@ public class CardManager : MonoBehaviour
 
     }  
 
-    public void AddScore(/*ClassData classData*/)
+    public void AddScore()
     {
         classManager.scoreofClass++;
         scoreText.text = classManager.scoreofClass.ToString();
         Debug.Log(classManager.nameofClass + "Your score is " + classManager.scoreofClass);
-        OnScoreChanged?.Invoke(classManager.scoreofClass/*, classData*/);
-        //classManager.ScoreChanged = true;
+       
+       
     }
 
-    //    if (card1 == null)
-    //    {
-    //        card1 = pairData.PairName;
-
-    //    }
-
-    //    else
-    //    {
-    //        if (pairData.PairName == card1)
-    //        {
-    //            Debug.Log("correct");
-    //            text.text = "correct";
-    //        }
-    //        else
-    //        {
-    //            Debug.Log("notCorrect");
-    //            text.text = "notCorrect";
-    //        }
-
-    //        card1 = null;
-    //    }
-
-    //}
+    
 
 
     private IEnumerator InitializeText()

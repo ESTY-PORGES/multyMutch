@@ -2057,7 +2057,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameofClass: 
   scoreofClass: 0
-  scoreClass: 0000000000000000000000000000000000000000000000000000000000000000
+  scoreClass: 000000000000000000000000000000000000000000000000000000000000000000000000
   ScoreChanged: 0
   cardManager: {fileID: 1447397444}
   index: 0
@@ -2765,7 +2765,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1674100469
 MonoBehaviour:
   m_ObjectHideFlags: 0
