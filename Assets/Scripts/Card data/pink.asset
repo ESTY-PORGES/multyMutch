@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: pink
   m_EditorClassIdentifier: 
   pairName: pink
+  group: 1

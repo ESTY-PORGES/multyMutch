@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: blue
   m_EditorClassIdentifier: 
   pairName: blue
+  group: 1
