@@ -2,19 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.Events;
+
 
 public class CardManager : MonoBehaviour
 {
+
+    public UnityAction<int/*, ClassData*/> OnScoreChanged;
+
     [SerializeField] private Text text;
+    [SerializeField] private Text scoreText;
     //[SerializeField] private Group group;
     [SerializeField] private bool firstImageSelected;
-    //[SerializeField] private int groupInt;
+    //[SerializeField] private int classInt;
 
-   [SerializeField] private string card1;
-    public void UpdateDisplayUI(PairData pairData)
+    [SerializeField] private string card1;
+    [SerializeField] private ClassManager classManager;
+    //[SerializeField] private ClassData classData2;
+
+    private void Start()
     {
+       
+    }
+    public void UpdateDisplayUI(PairData pairData/*, ClassData classData*/)
+    {
+       
 
-
+        //Debug.Log(classManager.NameofClass);
+        //Debug.Log(classManager.ScoreofClass);
 
         if (firstImageSelected == false && pairData.Group == 1)
         {
@@ -34,6 +49,7 @@ public class CardManager : MonoBehaviour
                 Debug.Log("correct");
                 text.text = "correct";
                 StartCoroutine(InitializeText());
+                AddScore(/*classData*/);
             }
 
             else
@@ -48,34 +64,43 @@ public class CardManager : MonoBehaviour
 
     }  
 
-        //    if (card1 == null)
-        //    {
-        //        card1 = pairData.PairName;
+    public void AddScore(/*ClassData classData*/)
+    {
+        classManager.scoreofClass++;
+        scoreText.text = classManager.scoreofClass.ToString();
+        Debug.Log(classManager.nameofClass + "Your score is " + classManager.scoreofClass);
+        OnScoreChanged?.Invoke(classManager.scoreofClass/*, classData*/);
+        //classManager.ScoreChanged = true;
+    }
 
-        //    }
+    //    if (card1 == null)
+    //    {
+    //        card1 = pairData.PairName;
 
-        //    else
-        //    {
-        //        if (pairData.PairName == card1)
-        //        {
-        //            Debug.Log("correct");
-        //            text.text = "correct";
-        //        }
-        //        else
-        //        {
-        //            Debug.Log("notCorrect");
-        //            text.text = "notCorrect";
-        //        }
+    //    }
 
-        //        card1 = null;
-        //    }
+    //    else
+    //    {
+    //        if (pairData.PairName == card1)
+    //        {
+    //            Debug.Log("correct");
+    //            text.text = "correct";
+    //        }
+    //        else
+    //        {
+    //            Debug.Log("notCorrect");
+    //            text.text = "notCorrect";
+    //        }
 
-        //}
+    //        card1 = null;
+    //    }
+
+    //}
 
 
     private IEnumerator InitializeText()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(2f);
         Debug.Log("your turn");
         text.text = "your turn";
     }
