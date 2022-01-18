@@ -65,8 +65,7 @@ public class CardManager : MonoBehaviour
         classManager.scoreofClass++;
         scoreText.text = classManager.scoreofClass.ToString();
         Debug.Log(classManager.nameofClass + "Your score is " + classManager.scoreofClass);
-       
-       
+      
     }
 
     

@@ -37,6 +37,20 @@ public class ClassManager : MonoBehaviour
 
     }
 
+    public void WinClass(ClassData classData)
+    {
+        int max = 0;
+        for(int i = 0; i > scoreClass.Length; i++)
+        {
+            if (scoreClass[classData.index] > max)
+            {
+                max = scoreClass[classData.index];
+                Debug.Log(max);
+            }
+               
+        }
+    }
+
    
 
 
