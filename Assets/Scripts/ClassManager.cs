@@ -9,10 +9,26 @@ public class ClassManager : MonoBehaviour
     public string nameofClass;
     public int scoreofClass;
     public int[] scoreClass;
-    public bool ScoreChanged;
+    //public bool ScoreChanged;
     [SerializeField] private CardManager cardManager;
     public int index;
     private bool selectClass = false;
+    List<int> num = new List<int>() { 1, 30, 5, 6 };
+
+    private void Start()
+    {
+        int max = num[0];
+        for (int i = 0; i < num.Count; i++)
+        {
+            if (num[i] >= max)
+            {
+                max = num[i];
+                
+            }
+
+        }
+        Debug.Log(max);
+    }
 
     public bool SelectClass
     {
@@ -39,16 +55,17 @@ public class ClassManager : MonoBehaviour
 
     public void WinClass(ClassData classData)
     {
-        int max = 0;
-        for(int i = 0; i > scoreClass.Length; i++)
+        int max = scoreClass[0];
+        for(int i = 0; i < scoreClass.Length; i++)
         {
-            if (scoreClass[classData.index] > max)
+            if (scoreClass[i] >= max)
             {
                 max = scoreClass[classData.index];
-                Debug.Log(max);
+              
             }
                
         }
+        Debug.Log(max);
     }
 
    
