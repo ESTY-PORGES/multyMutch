@@ -7,13 +7,6 @@ public class MatchButton : MonoBehaviour
 {
     public Button[] matchButton;
    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    
     public void ClickButton()
     {
        

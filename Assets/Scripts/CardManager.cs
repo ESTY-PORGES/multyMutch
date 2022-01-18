@@ -7,8 +7,6 @@ using UnityEngine.Events;
 
 public class CardManager : MonoBehaviour
 {
-
-
     [SerializeField] private Text text;
     [SerializeField] private Text scoreText;
   
@@ -17,44 +15,47 @@ public class CardManager : MonoBehaviour
     [SerializeField] private string card1;
     [SerializeField] private ClassManager classManager;
  
-
-    private void Start()
-    {
-       
-    }
     public void UpdateDisplayUI(PairData pairData)
     {
-       
-
-        if (firstImageSelected == false && pairData.Group == 1)
+       if (classManager.SelectClass == true)
         {
-            Debug.Log(pairData.PairName);
-            Debug.Log(pairData.Group);
-            card1 = pairData.PairName;
-            firstImageSelected = true;
-        }
-
-        if (firstImageSelected == true && pairData.Group == 2)
-        {
-            Debug.Log(pairData.PairName);
-            Debug.Log(pairData.Group);
-
-            if (pairData.PairName == card1)
+            if (firstImageSelected == false && pairData.Group == 1)
             {
-                Debug.Log("correct");
-                text.text = "correct";
-                StartCoroutine(InitializeText());
-                AddScore();
+                Debug.Log(pairData.PairName);
+                Debug.Log(pairData.Group);
+                card1 = pairData.PairName;
+                firstImageSelected = true;
             }
 
-            else
+            if (firstImageSelected == true && pairData.Group == 2)
             {
-                Debug.Log("notCorrect");
-                text.text = "notCorrect";
-                StartCoroutine(InitializeText());
+                Debug.Log(pairData.PairName);
+                Debug.Log(pairData.Group);
+
+                if (pairData.PairName == card1)
+                {
+                    Debug.Log("correct");
+                    text.text = "correct";
+                    StartCoroutine(InitializeText());
+                    AddScore();
+                }
+
+                else
+                {
+                    Debug.Log("notCorrect");
+                    text.text = "notCorrect";
+                    StartCoroutine(InitializeText());
+                }
+                firstImageSelected = false;
+                classManager.SelectClass = false;
             }
-            firstImageSelected = false;
         }
+        else
+        {
+            return;
+        }
+
+        
 
 
     }  
@@ -74,7 +75,7 @@ public class CardManager : MonoBehaviour
     private IEnumerator InitializeText()
     {
         yield return new WaitForSeconds(2f);
-        Debug.Log("your turn");
-        text.text = "your turn";
+        Debug.Log("התכ רחב");
+        text.text = "התכ רחב";
     }
 }
