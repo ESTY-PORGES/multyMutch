@@ -1,74 +1,75 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 
 public class ClassManager : MonoBehaviour
 {
-    public string nameofClass;
-    public int scoreofClass;
-    public int[] scoreClass;
-    //public bool ScoreChanged;
-    [SerializeField] private CardManager cardManager;
-    public int index;
-    private bool selectClass = false;
-    List<int> num = new List<int>() { 1, 30, 5, 6 };
+
+    public bool selectClass = false;
+    private ClassData classDataSelected;
+    private bool scoreUp = false;
+
+    private List<ClassData> classDataList = new List<ClassData>();
 
     private void Start()
     {
-        int max = num[0];
-        for (int i = 0; i < num.Count; i++)
+
+    }
+
+    public void OnClickClass(ClassData classData)
+    {
+        classDataSelected = classData;
+        selectClass = true;
+
+        Debug.Log(classData.ClassName);
+    }
+
+    public void AddScore()
+    {
+
+         for (int i = 0; i < classDataList.Count; i++)
+         {
+              if (classDataList[i].ClassName == classDataSelected.ClassName) 
+              {
+                    scoreUp = true;
+                    Debug.Log("+++++++++");
+
+              }
+         }
+
+         if (scoreUp == false)
+         {
+                Debug.Log("Reset");
+                classDataSelected.Score = 0;
+         }
+
+         classDataSelected.Score++;
+
+         Debug.Log("score" + classDataSelected.Score);
+         Debug.Log(classDataSelected.ClassName );
+
+         classDataList.Add(classDataSelected);
+         scoreUp = false;
+    }
+
+    public void LeadingClass()
+    {
+        int max = classDataList[0].Score;
+        string maxName = classDataList[0].ClassName;
+
+        for (int i = 0; i < classDataList.Count; i++)
         {
-            if (num[i] >= max)
+            if (classDataList[i].Score >= max)
             {
-                max = num[i];
-                
+                max = classDataList[i].Score;
+                maxName = classDataList[i].ClassName;
             }
 
         }
-        Debug.Log(max);
+
+        //Debug.Log(maxName + max);
+        Debug.Log(maxName + " score"  + max);
     }
-
-    public bool SelectClass
-    {
-        get { return selectClass; }
-        set
-        {
-            selectClass = value;
-        }
-    }
-
-
-
-
-    public void UpdateDisplayUI(ClassData classData)
-    {
-        SelectClass = true;
-        nameofClass = classData.ClassName;
-        Debug.Log(nameofClass);
-        Debug.Log(scoreofClass);
-        scoreClass[classData.index]+= scoreofClass;
-        scoreofClass = 0;
-
-    }
-
-    public void WinClass(ClassData classData)
-    {
-        int max = scoreClass[0];
-        for(int i = 0; i < scoreClass.Length; i++)
-        {
-            if (scoreClass[i] >= max)
-            {
-                max = scoreClass[classData.index];
-              
-            }
-               
-        }
-        Debug.Log(max);
-    }
-
-   
-
 
 }

@@ -8,9 +8,18 @@ using UnityEngine;
 public class ClassData : ScriptableObject
 {
     [SerializeField] private string className;
-    public int score;
-    public int index;
+
+    private int score;
 
     public string ClassName => className;
-    //public int Score => score;
+
+    public int Score
+    {
+        get { return score; }
+        set
+        {
+            score = value;
+
+        }
+    }
 }
