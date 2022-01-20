@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: be34c6b8126de72438242c48d1ea2bdb, type: 3}
-  m_Name: pink
+  m_Name: Pair 3-1
   m_EditorClassIdentifier: 
-  pairName: pink
+  pairName: Pair 3
   group: 1
