@@ -10,6 +10,8 @@ public class CardManager : MonoBehaviour
     private string card1;
 
     [SerializeField] private ClassManager classManager;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip[] sounds;
 
     public void OnClickCard(PairData pairData)
     {
@@ -34,6 +36,8 @@ public class CardManager : MonoBehaviour
                     Debug.Log("correct");
 
                     classManager.AddScore();
+                    audioSource.clip = sounds[0];
+                    audioSource.Play();
                     //text.text = "correct";
                     //StartCoroutine(InitializeText());
                     //AddScore();
@@ -42,6 +46,8 @@ public class CardManager : MonoBehaviour
                 else
                 {
                     Debug.Log("notCorrect");
+                    audioSource.clip = sounds[1];
+                    audioSource.Play();
                     //text.text = "notCorrect";
                     //StartCoroutine(InitializeText());
                 }

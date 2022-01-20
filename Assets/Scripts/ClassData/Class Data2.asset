@@ -12,6 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a0a5b1585028604aa05b22e1fbed9e6, type: 3}
   m_Name: Class Data2
   m_EditorClassIdentifier: 
-  className: "2\u05D0"
-  score: 0
-  index: 1
+  className: "2\u05D8"

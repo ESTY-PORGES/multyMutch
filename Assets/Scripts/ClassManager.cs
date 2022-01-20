@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class ClassManager : MonoBehaviour
 {
-
+    [SerializeField] private Text classText;
+    //[SerializeField] private Text scoreText;
     public bool selectClass = false;
     private ClassData classDataSelected;
     private bool scoreUp = false;
@@ -21,7 +23,7 @@ public class ClassManager : MonoBehaviour
     {
         classDataSelected = classData;
         selectClass = true;
-
+        classText.text = classData.ClassName.ToString();
         Debug.Log(classData.ClassName);
     }
 
@@ -44,8 +46,8 @@ public class ClassManager : MonoBehaviour
                 classDataSelected.Score = 0;
          }
 
-         classDataSelected.Score++;
-
+         classDataSelected.Score= classDataSelected.Score + 10;
+         classText.text = classDataSelected.Score.ToString();
          Debug.Log("score" + classDataSelected.Score);
          Debug.Log(classDataSelected.ClassName );
 
