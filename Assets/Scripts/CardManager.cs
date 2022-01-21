@@ -9,11 +9,13 @@ public class CardManager : MonoBehaviour
     private bool firstImageSelected = false;
     private string card1;
 
+    [SerializeField] private Animator circleAnim;
     [SerializeField] private ClassManager classManager;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip[] sounds;
+  
 
-    public void OnClickCard(PairData pairData)
+  public void OnClickCard(PairData pairData)
     {
 
         if (classManager.selectClass == true)
@@ -38,8 +40,10 @@ public class CardManager : MonoBehaviour
                     classManager.AddScore();
                     audioSource.clip = sounds[0];
                     audioSource.Play();
+
                     //text.text = "correct";
-                    //StartCoroutine(InitializeText());
+                    circleAnim.SetInteger("onSpin", 1);
+                    StartCoroutine(StopAnim());
                     //AddScore();
                 }
 
@@ -60,8 +64,15 @@ public class CardManager : MonoBehaviour
             return;
         }
 
-    }
+      
 
+    }
+    private IEnumerator StopAnim()
+    {
+        
+        yield return new WaitForSeconds(5f);
+        circleAnim.SetInteger("onSpin", 0);
+    }
 
 
 
@@ -82,12 +93,12 @@ public class CardManager : MonoBehaviour
 
     //[SerializeField] private Text text;
     //[SerializeField] private Text scoreText;
-  
+
     //[SerializeField] private bool firstImageSelected;
-  
+
     //[SerializeField] private string card1;
     //[SerializeField] private ClassManager classManager;
- 
+
     //public void UpdateDisplayUI(PairData pairData)
     //{
     //   if (classManager.SelectClass == true)
@@ -128,7 +139,7 @@ public class CardManager : MonoBehaviour
     //        return;
     //    }
 
-        
+
 
 
     //}  
@@ -138,10 +149,10 @@ public class CardManager : MonoBehaviour
     //    classManager.scoreofClass++;
     //    scoreText.text = classManager.scoreofClass.ToString();
     //    Debug.Log(classManager.nameofClass + "Your score is " + classManager.scoreofClass);
-      
+
     //}
 
-    
+
 
 
     //private IEnumerator InitializeText()
