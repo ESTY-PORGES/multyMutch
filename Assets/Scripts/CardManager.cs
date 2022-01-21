@@ -56,6 +56,7 @@ public class CardManager : MonoBehaviour
 
                 else
                 {
+                    circleAnim.SetInteger("onSpin", 2);
                     Debug.Log("notCorrect");
                     audioSource.clip = sounds[1];
                     audioSource.Play();
@@ -81,7 +82,7 @@ public class CardManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         audioSource.clip = sounds[2];
         audioSource.Play();
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(1f);
         circleAnim.SetInteger("onSpin", 0);
       
     }
