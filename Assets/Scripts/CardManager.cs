@@ -13,9 +13,15 @@ public class CardManager : MonoBehaviour
     [SerializeField] private ClassManager classManager;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip[] sounds;
-  
 
-  public void OnClickCard(PairData pairData)
+    private void Start()
+    {
+        audioSource.clip = sounds[2];
+        audioSource.Play();
+    }
+
+
+    public void OnClickCard(PairData pairData)
     {
 
         if (classManager.selectClass == true)
@@ -40,6 +46,7 @@ public class CardManager : MonoBehaviour
                     classManager.AddScore();
                     audioSource.clip = sounds[0];
                     audioSource.Play();
+                
 
                     //text.text = "correct";
                     circleAnim.SetInteger("onSpin", 1);
@@ -52,6 +59,8 @@ public class CardManager : MonoBehaviour
                     Debug.Log("notCorrect");
                     audioSource.clip = sounds[1];
                     audioSource.Play();
+                    StartCoroutine(StopAnim());
+
                     //text.text = "notCorrect";
                     //StartCoroutine(InitializeText());
                 }
@@ -69,9 +78,12 @@ public class CardManager : MonoBehaviour
     }
     private IEnumerator StopAnim()
     {
-        
+        yield return new WaitForSeconds(1f);
+        audioSource.clip = sounds[2];
+        audioSource.Play();
         yield return new WaitForSeconds(5f);
         circleAnim.SetInteger("onSpin", 0);
+      
     }
 
 
