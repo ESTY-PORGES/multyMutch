@@ -10,6 +10,9 @@ public class PairData : ScriptableObject
     [SerializeField] private string pairName;
     [SerializeField] private int group;
  
+ 
     public string PairName => pairName;
     public int Group => group;
+
+   
 }

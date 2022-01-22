@@ -8,6 +8,7 @@ public class CardManager : MonoBehaviour
 {
     private bool firstImageSelected = false;
     private string card1;
+   
 
     [SerializeField] private Animator circleAnim;
     [SerializeField] private ClassManager classManager;
@@ -18,6 +19,7 @@ public class CardManager : MonoBehaviour
     {
         audioSource.clip = sounds[2];
         audioSource.Play();
+      
     }
 
 
@@ -46,7 +48,7 @@ public class CardManager : MonoBehaviour
                     classManager.AddScore();
                     audioSource.clip = sounds[0];
                     audioSource.Play();
-                
+                  
 
                     //text.text = "correct";
                     circleAnim.SetInteger("onSpin", 1);
