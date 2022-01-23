@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class ClassManager : MonoBehaviour
 {
+    [SerializeField] private GameManager gameManager;
+
     [SerializeField] private Text classText;
     //[SerializeField] private Text scoreText;
     public bool selectClass = false;
@@ -14,10 +16,6 @@ public class ClassManager : MonoBehaviour
 
     private List<ClassData> classDataList = new List<ClassData>();
 
-    private void Start()
-    {
-
-    }
 
     public void OnClickClass(ClassData classData)
     {
@@ -25,6 +23,8 @@ public class ClassManager : MonoBehaviour
         selectClass = true;
         classText.text = classData.ClassName.ToString();
         Debug.Log(classData.ClassName);
+
+        gameManager.ClassSelected?.Invoke();
     }
 
     public void AddScore()

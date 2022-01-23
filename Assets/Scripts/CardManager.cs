@@ -8,30 +8,19 @@ public class CardManager : MonoBehaviour
 {
     private bool firstImageSelected = false;
     private string card1;
+
     [SerializeField] private Image[] sprite1;
     [SerializeField] private Image[] sprite2;
-    //private SpriteRenderer spriteR;
 
-    [SerializeField] private Animator circleAnim;
+    [SerializeField] private GameManager gameManager;
     [SerializeField] private ClassManager classManager;
-    [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioClip[] sounds;
 
-    private void Start()
-    {
-        audioSource.clip = sounds[2];
-        audioSource.Play();
-        //spriteR = gameObject.GetComponent<SpriteRenderer>();
-    }
-
-
+    
     public void OnClickCard(PairData pairData)
     {
-      
-      
         if (classManager.selectClass == true)
         {
-            if (firstImageSelected == false && pairData.Group == 1)
+            if (firstImageSelected == false /*&& pairData.Group == 1*/)
             {
                 Debug.Log(pairData.PairName);
                 Debug.Log(pairData.Group);
@@ -41,7 +30,7 @@ public class CardManager : MonoBehaviour
                 sprite1[pairData.IndexPair].sprite = pairData.Sprite;
             }
 
-            if (firstImageSelected == true && pairData.Group == 2)
+            else if (firstImageSelected == true /*&& pairData.Group == 2*/)
             {
                 Debug.Log(pairData.PairName);
                 Debug.Log(pairData.Group);
@@ -52,10 +41,9 @@ public class CardManager : MonoBehaviour
                 {
                     Debug.Log("correct");
 
-                    classManager.AddScore();
-                    audioSource.clip = sounds[0];
-                    audioSource.Play();
+                    gameManager.OnCorrectClick?.Invoke();
 
+                    
                     Color tmp2 = sprite1[pairData.IndexPair].GetComponent<Image>().color;
                     tmp2.a = 0.3f;
                     sprite1[pairData.IndexPair].GetComponent<Image>().color = tmp2;
@@ -63,26 +51,15 @@ public class CardManager : MonoBehaviour
                     tmp3.a = 0.3f;
                     sprite2[pairData.IndexPair].GetComponent<Image>().color = tmp3;
 
-
-                    //tmp.a = 0f;
-                    /*.GetComponent<SpriteRenderer>().color = tmp;*/
-                    //sprite1[0].GetComponent<SpriteRenderer>().color += new Color(0, 0, 0, 0);
-                    //text.text = "correct";
-                    circleAnim.SetInteger("onSpin", 1);
-                    StartCoroutine(StopAnim());
-                    //AddScore();
                 }
 
                 else
                 {
-                    circleAnim.SetInteger("onSpin", 2);
-                    Debug.Log("notCorrect");
-                    audioSource.clip = sounds[1];
-                    audioSource.Play();
-                    StartCoroutine(StopAnim());
 
-                    //text.text = "notCorrect";
-                    //StartCoroutine(InitializeText());
+                    gameManager.OnWrongClick?.Invoke();
+                    
+                    Debug.Log("notCorrect");
+               
                 }
                 firstImageSelected = false;
                 classManager.selectClass = false;
@@ -93,18 +70,8 @@ public class CardManager : MonoBehaviour
             return;
         }
 
-      
-
     }
-    private IEnumerator StopAnim()
-    {
-        yield return new WaitForSeconds(1f);
-        audioSource.clip = sounds[2];
-        audioSource.Play();
-        yield return new WaitForSeconds(1f);
-        circleAnim.SetInteger("onSpin", 0);
-      
-    }
+    
 
 
 
