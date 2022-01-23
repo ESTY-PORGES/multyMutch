@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pairName: Pair 4
   group: 1
+  indexPair: 3
+  sprite: {fileID: 21300000, guid: d9d8ca7e34e9f754abaff6dca0287118, type: 3}
