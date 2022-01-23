@@ -9,10 +9,14 @@ public class PairData : ScriptableObject
 {
     [SerializeField] private string pairName;
     [SerializeField] private int group;
- 
+    [SerializeField] private int indexPair;
+
+   [SerializeField] private Sprite sprite;
  
     public string PairName => pairName;
     public int Group => group;
 
-   
+    public int IndexPair => indexPair;
+
+    public Sprite Sprite => sprite;
 }
