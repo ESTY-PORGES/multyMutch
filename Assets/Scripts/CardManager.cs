@@ -7,6 +7,7 @@ using UnityEngine;
 public class CardManager : MonoBehaviour
 {
     private bool firstImageSelected = false;
+    private bool secondImageSelected = false;
     private string card1;
 
     [SerializeField] private Image[] sprite1;
@@ -15,62 +16,113 @@ public class CardManager : MonoBehaviour
     [SerializeField] private GameManager gameManager;
     [SerializeField] private ClassManager classManager;
 
-    
+    [SerializeField] private ParticleSystem particles;
+
+    private int indexButtonClicked1;
+    private int indexButtonClicked2;
+
+    public int IndexButtonClicked1 => indexButtonClicked1;
+    public int IndexButtonClicked2 => indexButtonClicked2;
+
+    private void Start()
+    {
+        firstImageSelected = false;
+        secondImageSelected = true;
+    }
+
     public void OnClickCard(PairData pairData)
     {
-        if (classManager.selectClass == true)
+        if (classManager.selectClass == true && firstImageSelected == false)
         {
-            if (firstImageSelected == false /*&& pairData.Group == 1*/)
+            firstImageSelected = true;
+            indexButtonClicked1 = pairData.IndexPair;
+            //card1 = pairData.PairName;
+            if(pairData.Group == 1)
             {
-                Debug.Log(pairData.PairName);
-                Debug.Log(pairData.Group);
-                Debug.Log(pairData.Sprite);
-                card1 = pairData.PairName;
-                firstImageSelected = true;
                 sprite1[pairData.IndexPair].sprite = pairData.Sprite;
             }
-
-            else if (firstImageSelected == true /*&& pairData.Group == 2*/)
+           else 
             {
-                Debug.Log(pairData.PairName);
-                Debug.Log(pairData.Group);
-                Debug.Log(pairData.Sprite);
                 sprite2[pairData.IndexPair].sprite = pairData.Sprite;
-
-                if (pairData.PairName == card1)
-                {
-                    Debug.Log("correct");
-
-                    gameManager.OnCorrectClick?.Invoke();
-
-                    
-                    Color tmp2 = sprite1[pairData.IndexPair].GetComponent<Image>().color;
-                    tmp2.a = 0.3f;
-                    sprite1[pairData.IndexPair].GetComponent<Image>().color = tmp2;
-                    Color tmp3 = sprite2[pairData.IndexPair].GetComponent<Image>().color;
-                    tmp3.a = 0.3f;
-                    sprite2[pairData.IndexPair].GetComponent<Image>().color = tmp3;
-
-                }
-
-                else
-                {
-
-                    gameManager.OnWrongClick?.Invoke();
-                    
-                    Debug.Log("notCorrect");
-               
-                }
-                firstImageSelected = false;
-                classManager.selectClass = false;
             }
+               
+
+            //Debug.Log(pairData.PairName);
+            ////Debug.Log(pairData.Group);
+            //Debug.Log(pairData.Sprite);
+            secondImageSelected = false;
+
         }
-        else
-        {
-            return;
+
+        else if (secondImageSelected == false)
+         {
+            Debug.Log(pairData.IndexPair);
+            indexButtonClicked2 = pairData.IndexPair;
+           
+            if (pairData.Group == 2)
+            {
+                sprite2[pairData.IndexPair].sprite = pairData.Sprite;
+                
+            }
+            else 
+            {
+                sprite1[pairData.IndexPair].sprite = pairData.Sprite;
+            }
+           
+            //Debug.Log(pairData.PairName);
+            ////Debug.Log(pairData.Group);
+            //Debug.Log(pairData.Sprite);
+
+
+            if (indexButtonClicked1 == indexButtonClicked2)
+            {
+                Debug.Log("correct");
+
+                gameManager.OnCorrectClick?.Invoke();
+               
+                Color tmp2 = sprite1[pairData.IndexPair].GetComponent<Image>().color;
+                tmp2.a = 0.3f;
+                sprite1[pairData.IndexPair].GetComponent<Image>().color = tmp2;
+                Color tmp3 = sprite2[pairData.IndexPair].GetComponent<Image>().color;
+                tmp3.a = 0.3f;
+                sprite2[pairData.IndexPair].GetComponent<Image>().color = tmp3;
+
+                if (indexButtonClicked1 == 1)
+                {
+                    particles.Play();
+                    gameManager.OnGift?.Invoke();
+                    gameManager.OnCorrectClick?.Invoke();
+                }
+            }
+
+            else
+            {
+
+                gameManager.OnWrongClick?.Invoke();
+
+                Debug.Log("notCorrect");
+
+            }
+
+            secondImageSelected = true;
+            firstImageSelected = false;
+            classManager.selectClass = false;
+
         }
+
+
 
     }
+
+
+
+
+   
+}
+    
+       
+
+    
     
 
 
@@ -90,74 +142,9 @@ public class CardManager : MonoBehaviour
 
 
 
-    //[SerializeField] private Text text;
-    //[SerializeField] private Text scoreText;
-
-    //[SerializeField] private bool firstImageSelected;
-
-    //[SerializeField] private string card1;
-    //[SerializeField] private ClassManager classManager;
-
-    //public void UpdateDisplayUI(PairData pairData)
-    //{
-    //   if (classManager.SelectClass == true)
-    //    {
-    //        if (firstImageSelected == false && pairData.Group == 1)
-    //        {
-    //            Debug.Log(pairData.PairName);
-    //            Debug.Log(pairData.Group);
-    //            card1 = pairData.PairName;
-    //            firstImageSelected = true;
-    //        }
-
-    //        if (firstImageSelected == true && pairData.Group == 2)
-    //        {
-    //            Debug.Log(pairData.PairName);
-    //            Debug.Log(pairData.Group);
-
-    //            if (pairData.PairName == card1)
-    //            {
-    //                Debug.Log("correct");
-    //                text.text = "correct";
-    //                StartCoroutine(InitializeText());
-    //                AddScore();
-    //            }
-
-    //            else
-    //            {
-    //                Debug.Log("notCorrect");
-    //                text.text = "notCorrect";
-    //                StartCoroutine(InitializeText());
-    //            }
-    //            firstImageSelected = false;
-    //            classManager.SelectClass = false;
-    //        }
-    //    }
-    //    else
-    //    {
-    //        return;
-    //    }
+    
 
 
 
 
-    //}  
 
-    //public void AddScore()
-    //{
-    //    classManager.scoreofClass++;
-    //    scoreText.text = classManager.scoreofClass.ToString();
-    //    Debug.Log(classManager.nameofClass + "Your score is " + classManager.scoreofClass);
-
-    //}
-
-
-
-
-    //private IEnumerator InitializeText()
-    //{
-    //    yield return new WaitForSeconds(2f);
-    //    Debug.Log("התכ רחב");
-    //    text.text = "התכ רחב";
-    //}
-}

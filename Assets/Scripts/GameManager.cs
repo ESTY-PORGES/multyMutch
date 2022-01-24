@@ -9,25 +9,36 @@ public class GameManager : MonoBehaviour
     public UnityAction OnCorrectClick;
     public UnityAction SelectClass;
     public UnityAction ClassSelected;
+    public UnityAction OnGift;
 
 
     [SerializeField] private Animator circleAnim;
+    [SerializeField] private Animator giftAnim;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip[] sounds;
 
     [SerializeField] private GameObject backroundBlue;
     [SerializeField] private GameObject classbuttons;
 
+    public Texture2D cursorTexture;
+    public CursorMode cursorMode = CursorMode.Auto;
+    public Vector2 hotSpot = Vector2.zero;
+
+    private bool setActiveText;
+
+    public bool SetActiveText => setActiveText;
+
 
     private void Start()
     {
+        Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
         SelectAClass();
 
         OnCorrectClick += Correct;
         OnWrongClick += NotCorrect;
         SelectClass += SelectAClass;
         ClassSelected += EndSelectClass;
-
+        OnGift += GetGift;
 
         audioSource.clip = sounds[2];
         audioSource.Play();
@@ -44,9 +55,14 @@ public class GameManager : MonoBehaviour
         //Color tmp3 = sprite2[pairData.IndexPair].GetComponent<Image>().color;
         //tmp3.a = 0.3f;
         //sprite2[pairData.IndexPair].GetComponent<Image>().color = tmp3;
-
+       
         circleAnim.SetInteger("onSpin", 1);
         StartCoroutine(StopAnim());
+    }
+
+    private void GetGift()
+    {
+        giftAnim.SetInteger("onGift", 1);
     }
 
     private void NotCorrect()
@@ -62,6 +78,7 @@ public class GameManager : MonoBehaviour
         circleAnim.SetInteger("onSpin", 5);
         backroundBlue.gameObject.SetActive(true);
         classbuttons.gameObject.SetActive(true);
+        setActiveText = true;
     }
 
     private void EndSelectClass()
@@ -69,6 +86,7 @@ public class GameManager : MonoBehaviour
         circleAnim.SetInteger("onSpin", 6);
         backroundBlue.gameObject.SetActive(false);
         classbuttons.gameObject.SetActive(false);
+        setActiveText = false;
     }
 
 

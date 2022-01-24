@@ -16,7 +16,10 @@ public class ClassManager : MonoBehaviour
 
     private List<ClassData> classDataList = new List<ClassData>();
 
-
+    private void Start()
+    {
+        gameManager.OnCorrectClick += AddScore;
+    }
     public void OnClickClass(ClassData classData)
     {
         classDataSelected = classData;
@@ -25,7 +28,24 @@ public class ClassManager : MonoBehaviour
         Debug.Log(classData.ClassName);
 
         gameManager.ClassSelected?.Invoke();
+
+       
+       
     }
+
+    public void Update()
+    {
+        if (gameManager.SetActiveText == true)
+        {
+            classText.gameObject.SetActive(false);
+        }
+        else
+        {
+            classText.gameObject.SetActive(true);
+        }
+    }
+
+
 
     public void AddScore()
     {
