@@ -13,6 +13,8 @@ public class CardManager : MonoBehaviour
     [SerializeField] private Image[] sprite1;
     [SerializeField] private Image[] sprite2;
 
+    private Image currectImg;
+
     [SerializeField] private GameManager gameManager;
     [SerializeField] private ClassManager classManager;
 
@@ -24,9 +26,11 @@ public class CardManager : MonoBehaviour
     public int IndexButtonClicked1 => indexButtonClicked1;
     public int IndexButtonClicked2 => indexButtonClicked2;
 
+
+
     private void Start()
     {
-        firstImageSelected = false;
+       
 
     }
 
@@ -36,19 +40,26 @@ public class CardManager : MonoBehaviour
         {
             currectClick = false;
             firstImageSelected = true;
-            StartCoroutine(Flickering(pairData.IndexPair));
+            
             indexButtonClicked1 = pairData.IndexPair;
 
 
-            if(pairData.Group == 1)
+            if (pairData.Group == 1)
             {
-                sprite1[pairData.IndexPair].sprite = pairData.Sprite;
+
+                currectImg = sprite1[pairData.IndexPair];
+
+                //sprite1[pairData.IndexPair].sprite = pairData.Sprite;
             }
             else 
             {
-                sprite2[pairData.IndexPair].sprite = pairData.Sprite;
+                currectImg = sprite2[pairData.IndexPair];
+                //sprite2[pairData.IndexPair].sprite = pairData.Sprite;
             }
-               
+
+            currectImg.sprite = pairData.Sprite;
+
+            StartCoroutine(Flickering(pairData.IndexPair , currectImg));
         }
 
         else if (firstImageSelected == true)
@@ -73,6 +84,7 @@ public class CardManager : MonoBehaviour
             if (indexButtonClicked1 == indexButtonClicked2)
             {
                 Debug.Log("correct");
+                gameManager. CorrectClicks++;
                 currectClick = true;
 
                 gameManager.OnCorrectClick?.Invoke();
@@ -106,35 +118,36 @@ public class CardManager : MonoBehaviour
 
     }
 
-    private IEnumerator Flickering(int currentIndex)
+    private IEnumerator Flickering(int currentIndex, Image image)
     {
+
         while (firstImageSelected == true)
         {
             yield return new WaitForSeconds(0.5f);
 
-            Color tmp1 = sprite1[currentIndex].GetComponent<Image>().color;
+            Color tmp1 = image.GetComponent<Image>().color;
             tmp1.a = 0.5f;
-            sprite1[currentIndex].GetComponent<Image>().color = tmp1;
+            image.GetComponent<Image>().color = tmp1;
 
             yield return new WaitForSeconds(0.5f);
 
-            tmp1 = sprite1[currentIndex].GetComponent<Image>().color;
+            tmp1 = image.GetComponent<Image>().color;
             tmp1.a = 1;
-            sprite1[currentIndex].GetComponent<Image>().color = tmp1;
+            image.GetComponent<Image>().color = tmp1;
         }
 
         if (currectClick == true)
         {
-            Color tmp2 = sprite1[currentIndex].GetComponent<Image>().color;
+            Color tmp2 = image.GetComponent<Image>().color;
             tmp2.a = 0.3f;
-            sprite1[currentIndex].GetComponent<Image>().color = tmp2;
+            image.GetComponent<Image>().color = tmp2;
         }
 
         else
         {
-            Color tmp2 = sprite1[currentIndex].GetComponent<Image>().color;
+            Color tmp2 = image.GetComponent<Image>().color;
             tmp2.a = 1;
-            sprite1[currentIndex].GetComponent<Image>().color = tmp2;
+            image.GetComponent<Image>().color = tmp2;
         }
     }
 

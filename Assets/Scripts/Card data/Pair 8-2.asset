@@ -15,4 +15,4 @@ MonoBehaviour:
   pairName: Pair 8
   group: 2
   indexPair: 7
-  sprite: {fileID: 21300000, guid: 18be61b3e4c1f584f8289286c99f44dd, type: 3}
+  sprite: {fileID: 21300000, guid: ce084049194fdbc4a93eb88843fcc15a, type: 3}

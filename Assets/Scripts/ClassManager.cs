@@ -19,6 +19,7 @@ public class ClassManager : MonoBehaviour
     private void Start()
     {
         gameManager.OnCorrectClick += AddScore;
+        gameManager.Movilclass += LeadingClass;
     }
     public void OnClickClass(ClassData classData)
     {
@@ -66,8 +67,8 @@ public class ClassManager : MonoBehaviour
                 classDataSelected.Score = 0;
          }
 
-         classDataSelected.Score= classDataSelected.Score + 10;
-         classText.text = classDataSelected.Score.ToString();
+         classDataSelected.Score = classDataSelected.Score + 10;
+         classText.text = /*classDataSelected.Score.ToString()*/ 10  + " + " + classDataSelected.ClassName ;
          Debug.Log("score" + classDataSelected.Score);
          Debug.Log(classDataSelected.ClassName );
 
@@ -82,7 +83,13 @@ public class ClassManager : MonoBehaviour
 
         for (int i = 0; i < classDataList.Count; i++)
         {
-            if (classDataList[i].Score >= max)
+            if (classDataList[i].Score == max)
+            {
+                max = 100;
+                maxName = "2 Winners";
+            }
+
+            else if (classDataList[i].Score >= max)
             {
                 max = classDataList[i].Score;
                 maxName = classDataList[i].ClassName;
@@ -92,6 +99,11 @@ public class ClassManager : MonoBehaviour
 
         //Debug.Log(maxName + max);
         Debug.Log(maxName + " score"  + max);
+
+        gameManager.Movil(maxName, max);
+
+
+
     }
 
 }

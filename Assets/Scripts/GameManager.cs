@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Events;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -10,6 +11,7 @@ public class GameManager : MonoBehaviour
     public UnityAction SelectClass;
     public UnityAction ClassSelected;
     public UnityAction OnGift;
+    public UnityAction Movilclass;
 
     [SerializeField] private Animator classButtonAnim;
     [SerializeField] private Animator circleAnim;
@@ -22,18 +24,37 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject backroundBlue;
     [SerializeField] private GameObject classbuttons;
 
+    [SerializeField] private GameObject movilllll;
+    [SerializeField] private Text classs;
+    [SerializeField] private Text scoree;
+
     public Texture2D cursorTexture;
     public CursorMode cursorMode = CursorMode.Auto;
     public Vector2 hotSpot = Vector2.zero;
 
     private bool setActiveText;
-
+    private int correctClicks = 0;
     public bool SetActiveText => setActiveText;
+
+    public int CorrectClicks
+    {
+        get { return correctClicks; }
+        set
+        {
+            correctClicks = value;
+            //OnWrongClick?.Invoke(health);
+            if (correctClicks >= 8)
+            {
+                Movilclass?.Invoke();
+            }
+
+        }
+    }
 
 
     private IEnumerator Start()
     {
-        Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+        //Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
         audioSource.clip = sounds[2];
         audioSource.Play();
         imageAnim.SetInteger("onImage", 1);
@@ -42,9 +63,12 @@ public class GameManager : MonoBehaviour
         SelectAClass();
 
         OnCorrectClick += Correct;
+        //OnClickClass += 
         OnWrongClick += NotCorrect;
         SelectClass += SelectAClass;
         ClassSelected += EndSelectClass;
+        //Movilclass += Movil;
+
         OnGift += GetGift;
        
        
@@ -67,10 +91,11 @@ public class GameManager : MonoBehaviour
         StartCoroutine(StopAnim());
     }
 
+    
+
     private void GetGift()
     {
         giftAnim.SetInteger("onGift", 1);
-       
     }
 
     private void NotCorrect()
@@ -92,13 +117,7 @@ public class GameManager : MonoBehaviour
 
     private void EndSelectClass()
     {
-        circleAnim.SetInteger("onSpin", 6);
-
-        classButtonAnim.SetBool("chooseClass", false);
-        backroundBlue.gameObject.SetActive(false);
-        
-        setActiveText = false;
-        littleCircleAnim.SetInteger("onCircle", 1);
+        StartCoroutine(HideClasses());
         StartCoroutine(StopAnim1());
     }
 
@@ -117,24 +136,48 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         audioSource.clip = sounds[2];
         audioSource.Play();
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
         circleAnim.SetInteger("onSpin", 0);
         littleCircleAnim.SetInteger("onCircle", 0);
         
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
         SelectAClass();
 
     }
 
     private IEnumerator viewClasses()
     {
+        yield return new WaitForSeconds(0.2f);
+        backroundBlue.gameObject.SetActive(true);
         yield return new WaitForSeconds(1f);
         classButtonAnim.SetBool("chooseClass", true);
-
-        backroundBlue.gameObject.SetActive(true);
         classbuttons.gameObject.SetActive(true);
         setActiveText = true;
 
     }
 
+    private IEnumerator HideClasses()
+    {
+        circleAnim.SetInteger("onSpin", 6);
+
+        classButtonAnim.SetBool("chooseClass", false);
+
+        setActiveText = false;
+        littleCircleAnim.SetInteger("onCircle", 1);
+        yield return new WaitForSeconds(2f);
+
+        backroundBlue.gameObject.SetActive(false);
+    }
+
+    public void Movil(string class1, int score1)
+    {
+        movilllll.gameObject.SetActive(true);
+        scoree.text = score1.ToString();
+        classs.text = class1;
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
 }
