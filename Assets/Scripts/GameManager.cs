@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public UnityAction ClassSelected;
     public UnityAction OnGift;
 
-
+    [SerializeField] private Animator classButtonAnim;
     [SerializeField] private Animator circleAnim;
     [SerializeField] private Animator giftAnim;
     [SerializeField] private Animator imageAnim;
@@ -85,16 +85,18 @@ public class GameManager : MonoBehaviour
     {
         littleCircleAnim.SetInteger("onCircle", 0);
         circleAnim.SetInteger("onSpin", 5);
-        backroundBlue.gameObject.SetActive(true);
-        classbuttons.gameObject.SetActive(true);
-        setActiveText = true;
+
+        StartCoroutine(viewClasses());
+        
     }
 
     private void EndSelectClass()
     {
         circleAnim.SetInteger("onSpin", 6);
+
+        classButtonAnim.SetBool("chooseClass", false);
         backroundBlue.gameObject.SetActive(false);
-        classbuttons.gameObject.SetActive(false);
+        
         setActiveText = false;
         littleCircleAnim.SetInteger("onCircle", 1);
         StartCoroutine(StopAnim1());
@@ -121,6 +123,17 @@ public class GameManager : MonoBehaviour
         
         yield return new WaitForSeconds(1f);
         SelectAClass();
+
+    }
+
+    private IEnumerator viewClasses()
+    {
+        yield return new WaitForSeconds(1f);
+        classButtonAnim.SetBool("chooseClass", true);
+
+        backroundBlue.gameObject.SetActive(true);
+        classbuttons.gameObject.SetActive(true);
+        setActiveText = true;
 
     }
 

@@ -7,8 +7,8 @@ using UnityEngine;
 public class CardManager : MonoBehaviour
 {
     private bool firstImageSelected = false;
-    private bool secondImageSelected = false;
-    private string card1;
+
+    private bool currectClick = false;
 
     [SerializeField] private Image[] sprite1;
     [SerializeField] private Image[] sprite2;
@@ -27,38 +27,38 @@ public class CardManager : MonoBehaviour
     private void Start()
     {
         firstImageSelected = false;
-        secondImageSelected = true;
+
     }
 
     public void OnClickCard(PairData pairData)
     {
         if (classManager.selectClass == true && firstImageSelected == false)
         {
+            currectClick = false;
             firstImageSelected = true;
+            StartCoroutine(Flickering(pairData.IndexPair));
             indexButtonClicked1 = pairData.IndexPair;
-            //card1 = pairData.PairName;
+
+
             if(pairData.Group == 1)
             {
                 sprite1[pairData.IndexPair].sprite = pairData.Sprite;
             }
-           else 
+            else 
             {
                 sprite2[pairData.IndexPair].sprite = pairData.Sprite;
             }
                
-
-            //Debug.Log(pairData.PairName);
-            ////Debug.Log(pairData.Group);
-            //Debug.Log(pairData.Sprite);
-            secondImageSelected = false;
-
         }
 
-        else if (secondImageSelected == false)
-         {
+        else if (firstImageSelected == true)
+        {
             Debug.Log(pairData.IndexPair);
             indexButtonClicked2 = pairData.IndexPair;
-           
+
+            firstImageSelected = false;
+            classManager.selectClass = false;
+
             if (pairData.Group == 2)
             {
                 sprite2[pairData.IndexPair].sprite = pairData.Sprite;
@@ -68,15 +68,12 @@ public class CardManager : MonoBehaviour
             {
                 sprite1[pairData.IndexPair].sprite = pairData.Sprite;
             }
-           
-            //Debug.Log(pairData.PairName);
-            ////Debug.Log(pairData.Group);
-            //Debug.Log(pairData.Sprite);
-
+         
 
             if (indexButtonClicked1 == indexButtonClicked2)
             {
                 Debug.Log("correct");
+                currectClick = true;
 
                 gameManager.OnCorrectClick?.Invoke();
                
@@ -99,14 +96,9 @@ public class CardManager : MonoBehaviour
             {
 
                 gameManager.OnWrongClick?.Invoke();
-
+                currectClick = false;
                 Debug.Log("notCorrect");
-
             }
-
-            secondImageSelected = true;
-            firstImageSelected = false;
-            classManager.selectClass = false;
 
         }
 
@@ -114,10 +106,40 @@ public class CardManager : MonoBehaviour
 
     }
 
+    private IEnumerator Flickering(int currentIndex)
+    {
+        while (firstImageSelected == true)
+        {
+            yield return new WaitForSeconds(0.5f);
+
+            Color tmp1 = sprite1[currentIndex].GetComponent<Image>().color;
+            tmp1.a = 0.5f;
+            sprite1[currentIndex].GetComponent<Image>().color = tmp1;
+
+            yield return new WaitForSeconds(0.5f);
+
+            tmp1 = sprite1[currentIndex].GetComponent<Image>().color;
+            tmp1.a = 1;
+            sprite1[currentIndex].GetComponent<Image>().color = tmp1;
+        }
+
+        if (currectClick == true)
+        {
+            Color tmp2 = sprite1[currentIndex].GetComponent<Image>().color;
+            tmp2.a = 0.3f;
+            sprite1[currentIndex].GetComponent<Image>().color = tmp2;
+        }
+
+        else
+        {
+            Color tmp2 = sprite1[currentIndex].GetComponent<Image>().color;
+            tmp2.a = 1;
+            sprite1[currentIndex].GetComponent<Image>().color = tmp2;
+        }
+    }
 
 
 
-   
 }
     
        
