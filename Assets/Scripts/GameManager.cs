@@ -28,6 +28,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text classs;
     [SerializeField] private Text scoree;
 
+    [SerializeField] private Text feedback1;
+    [SerializeField] private Text feedback2;
+
     public Texture2D cursorTexture;
     public CursorMode cursorMode = CursorMode.Auto;
     public Vector2 hotSpot = Vector2.zero;
@@ -88,6 +91,8 @@ public class GameManager : MonoBehaviour
         audioSource.Play();
         littleCircleAnim.SetInteger("onCircle", 1);
         StartCoroutine(StopAnim());
+
+        StartCoroutine(Feedback(1));
     }
     #endregion
 
@@ -107,6 +112,8 @@ public class GameManager : MonoBehaviour
         audioSource.clip = sounds[1];
         audioSource.Play();
         StartCoroutine(StopAnim());
+
+        StartCoroutine(Feedback(2));
     }
     #endregion
 
@@ -115,7 +122,7 @@ public class GameManager : MonoBehaviour
     private void SelectAClass()
     {
         littleCircleAnim.SetInteger("onCircle", 0);
-        circleAnim.SetInteger("onSpin", 5);
+
 
         StartCoroutine(viewClasses());
         
@@ -164,15 +171,48 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator viewClasses()
     {
+
         yield return new WaitForSeconds(0.2f);
         backroundBlue.gameObject.SetActive(true);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
+        circleAnim.SetInteger("onSpin", 5);
+        yield return new WaitForSeconds(1.5f);
         classButtonAnim.SetBool("chooseClass", true);
         classbuttons.gameObject.SetActive(true);
         setActiveText = true;
 
     }
+
+
     #endregion
+
+    private IEnumerator Feedback(int ifCorrect)
+    {
+
+        yield return new WaitForSeconds(4f);
+
+        if (ifCorrect == 1)
+        {
+            feedback1.text = "!יפוי";
+            feedback2.text = "!הרושק תא";
+        }
+        else
+        {
+            feedback1.text = "...מממ";
+            feedback2.text = "?רשקה המ";
+
+        }
+
+        feedback1.gameObject.SetActive(true);
+        feedback2.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(3.6f);
+
+        feedback1.gameObject.SetActive(false);
+        feedback2.gameObject.SetActive(false);
+
+    }
+
 
     #region IEnumerator HideClasses
     private IEnumerator HideClasses()
