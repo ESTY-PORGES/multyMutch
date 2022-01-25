@@ -21,18 +21,7 @@ public class ClassManager : MonoBehaviour
         gameManager.OnCorrectClick += AddScore;
         gameManager.Movilclass += LeadingClass;
     }
-    public void OnClickClass(ClassData classData)
-    {
-        classDataSelected = classData;
-        selectClass = true;
-        classText.text = classData.ClassName.ToString();
-        Debug.Log(classData.ClassName);
-
-        gameManager.ClassSelected?.Invoke();
-
-       
-       
-    }
+    
 
     public void Update()
     {
@@ -44,6 +33,17 @@ public class ClassManager : MonoBehaviour
         {
             classText.gameObject.SetActive(true);
         }
+    }
+
+    public void OnClickClass(ClassData classData)
+    {
+        classDataSelected = classData;
+        selectClass = true;
+        classText.text = classData.ClassName.ToString();
+        Debug.Log(classData.ClassName);
+
+        gameManager.ClassSelected?.Invoke();
+
     }
 
 

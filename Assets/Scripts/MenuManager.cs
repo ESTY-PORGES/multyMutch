@@ -4,20 +4,22 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class MainManager : MonoBehaviour
+    
+    public class MenuManager : MonoBehaviour
 {
-    [SerializeField] private Animator circleBigAnim;
-    // Start is called before the first frame update
+    [SerializeField] private Animator playAnim;
+
     private IEnumerator Start()
     {
         yield return new WaitForSeconds(0.1f);
-        circleBigAnim.SetInteger("onRotate", 1);
+        playAnim.SetInteger("onPlay", 1);
         yield return new WaitForSeconds(7);
-        circleBigAnim.SetInteger("onRotate", 0);
+        playAnim.SetInteger("onPlay", 0);
     }
 
     public void PlayGame()
     {
         SceneManager.LoadScene(1);
     }
+
 }

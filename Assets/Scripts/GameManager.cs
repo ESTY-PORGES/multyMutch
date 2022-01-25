@@ -1,5 +1,5 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine;
@@ -36,22 +36,9 @@ public class GameManager : MonoBehaviour
     private int correctClicks = 0;
     public bool SetActiveText => setActiveText;
 
-    public int CorrectClicks
-    {
-        get { return correctClicks; }
-        set
-        {
-            correctClicks = value;
-            //OnWrongClick?.Invoke(health);
-            if (correctClicks >= 8)
-            {
-                Movilclass?.Invoke();
-            }
+  
 
-        }
-    }
-
-
+    #region IEnumerator Start
     private IEnumerator Start()
     {
         //Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
@@ -74,29 +61,45 @@ public class GameManager : MonoBehaviour
        
     }
 
+    #endregion
+
+    #region CorrectClicks
+    public int CorrectClicks
+    {
+        get { return correctClicks; }
+        set
+        {
+            correctClicks = value;
+            //OnWrongClick?.Invoke(health);
+            if (correctClicks >= 8)
+            {
+                Movilclass?.Invoke();
+            }
+
+        }
+    }
+    #endregion
+
+    # region Correct
+
     private void Correct()
     {
         audioSource.clip = sounds[0];
         audioSource.Play();
-
-        //Color tmp2 = sprite1[pairData.IndexPair].GetComponent<Image>().color;
-        //tmp2.a = 0.3f;
-        //sprite1[pairData.IndexPair].GetComponent<Image>().color = tmp2;
-        //Color tmp3 = sprite2[pairData.IndexPair].GetComponent<Image>().color;
-        //tmp3.a = 0.3f;
-        //sprite2[pairData.IndexPair].GetComponent<Image>().color = tmp3;
-
         littleCircleAnim.SetInteger("onCircle", 1);
-
         StartCoroutine(StopAnim());
     }
+    #endregion
 
-    
 
+    #region  GetGift
     private void GetGift()
     {
         giftAnim.SetInteger("onGift", 1);
     }
+    #endregion
+
+    # region NotCorrect
 
     private void NotCorrect()
     {
@@ -105,6 +108,9 @@ public class GameManager : MonoBehaviour
         audioSource.Play();
         StartCoroutine(StopAnim());
     }
+    #endregion
+
+    # region SelectAClass
 
     private void SelectAClass()
     {
@@ -115,21 +121,28 @@ public class GameManager : MonoBehaviour
         
     }
 
+    #endregion
+
+    #region EndSelectClass
+
     private void EndSelectClass()
     {
         StartCoroutine(HideClasses());
         StartCoroutine(StopAnim1());
     }
 
+    #endregion
 
 
+    #region IEnumerator StopAnim1
     private IEnumerator StopAnim1()
     {
         yield return new WaitForSeconds(1f);
         littleCircleAnim.SetInteger("onCircle", 0);
     }
+    #endregion
 
-
+    #region IEnumerator StopAnim
 
     private IEnumerator StopAnim()
     {
@@ -145,6 +158,10 @@ public class GameManager : MonoBehaviour
 
     }
 
+    #endregion
+
+    #region IEnumerator viewClasses
+
     private IEnumerator viewClasses()
     {
         yield return new WaitForSeconds(0.2f);
@@ -155,7 +172,9 @@ public class GameManager : MonoBehaviour
         setActiveText = true;
 
     }
+    #endregion
 
+    #region IEnumerator HideClasses
     private IEnumerator HideClasses()
     {
         circleAnim.SetInteger("onSpin", 6);
@@ -168,6 +187,9 @@ public class GameManager : MonoBehaviour
 
         backroundBlue.gameObject.SetActive(false);
     }
+    #endregion
+
+    #region Movil
 
     public void Movil(string class1, int score1)
     {
@@ -175,9 +197,13 @@ public class GameManager : MonoBehaviour
         scoree.text = score1.ToString();
         classs.text = class1;
     }
+    #endregion
+
+    #region ExitGame
 
     public void ExitGame()
     {
         Application.Quit();
     }
+    #endregion
 }

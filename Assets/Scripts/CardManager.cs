@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
@@ -28,11 +27,7 @@ public class CardManager : MonoBehaviour
 
 
 
-    private void Start()
-    {
-       
-
-    }
+    #region ClickCard
 
     public void OnClickCard(PairData pairData)
     {
@@ -118,18 +113,22 @@ public class CardManager : MonoBehaviour
 
     }
 
+    #endregion
+
+    #region IEnumerator Flickering
+
     private IEnumerator Flickering(int currentIndex, Image image)
     {
 
         while (firstImageSelected == true)
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.2f);
 
             Color tmp1 = image.GetComponent<Image>().color;
             tmp1.a = 0.5f;
             image.GetComponent<Image>().color = tmp1;
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.2f);
 
             tmp1 = image.GetComponent<Image>().color;
             tmp1.a = 1;
@@ -151,14 +150,9 @@ public class CardManager : MonoBehaviour
         }
     }
 
-
+    #endregion
 
 }
-    
-       
-
-    
-    
 
 
 
@@ -177,7 +171,12 @@ public class CardManager : MonoBehaviour
 
 
 
-    
+
+
+
+
+
+
 
 
 
