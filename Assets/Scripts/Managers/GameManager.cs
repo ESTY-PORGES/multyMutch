@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public UnityAction ClassSelected;
     public UnityAction OnGift;
     public UnityAction Movilclass;
+    public UnityAction TextsetActive;
 
     [SerializeField] private Animator classButtonAnim;
     [SerializeField] private Animator circleAnim;
@@ -180,11 +181,14 @@ public class GameManager : MonoBehaviour
         classButtonAnim.SetBool("chooseClass", true);
         classbuttons.gameObject.SetActive(true);
         setActiveText = true;
+        TextsetActive?.Invoke();
 
     }
 
 
     #endregion
+
+    # region IEnumerator Feedback
 
     private IEnumerator Feedback(int ifCorrect)
     {
@@ -212,6 +216,7 @@ public class GameManager : MonoBehaviour
         feedback2.gameObject.SetActive(false);
 
     }
+    #endregion
 
 
     #region IEnumerator HideClasses

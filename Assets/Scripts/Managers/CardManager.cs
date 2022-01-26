@@ -44,12 +44,12 @@ public class CardManager : MonoBehaviour
 
                 currectImg = sprite1[pairData.IndexPair];
 
-                //sprite1[pairData.IndexPair].sprite = pairData.Sprite;
+                
             }
             else 
             {
                 currectImg = sprite2[pairData.IndexPair];
-                //sprite2[pairData.IndexPair].sprite = pairData.Sprite;
+                
             }
 
             currectImg.sprite = pairData.Sprite;
@@ -83,20 +83,17 @@ public class CardManager : MonoBehaviour
                 currectClick = true;
 
                 gameManager.OnCorrectClick?.Invoke();
-               
+
+           
+
                 Color tmp2 = sprite1[pairData.IndexPair].GetComponent<Image>().color;
                 tmp2.a = 0.3f;
                 sprite1[pairData.IndexPair].GetComponent<Image>().color = tmp2;
                 Color tmp3 = sprite2[pairData.IndexPair].GetComponent<Image>().color;
                 tmp3.a = 0.3f;
                 sprite2[pairData.IndexPair].GetComponent<Image>().color = tmp3;
+                AddBonus();
 
-                if (indexButtonClicked1 == 1)
-                {
-                    particles.Play();
-                    gameManager.OnGift?.Invoke();
-                    gameManager.OnCorrectClick?.Invoke();
-                }
             }
 
             else
@@ -113,6 +110,20 @@ public class CardManager : MonoBehaviour
 
     }
 
+    #endregion
+
+
+    # region AddBonus
+    public void  AddBonus()
+    {
+
+        if (indexButtonClicked1 == 1)
+        {
+            particles.Play();
+            gameManager.OnGift?.Invoke();
+            gameManager.OnCorrectClick?.Invoke();
+        }
+    }
     #endregion
 
     #region IEnumerator Flickering

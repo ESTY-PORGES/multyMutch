@@ -20,10 +20,11 @@ public class ClassManager : MonoBehaviour
     {
         gameManager.OnCorrectClick += AddScore;
         gameManager.Movilclass += LeadingClass;
+        gameManager.TextsetActive += SetActiveClassText;
     }
     
 
-    public void Update()
+    public void SetActiveClassText()
     {
         if (gameManager.SetActiveText == true)
         {
