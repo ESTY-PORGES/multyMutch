@@ -7,10 +7,12 @@ using UnityEngine.SceneManagement;
     
     public class MenuManager : MonoBehaviour
 {
+   
     [SerializeField] private Animator playAnim;
 
     private IEnumerator Start()
     {
+     
         yield return new WaitForSeconds(0.1f);
         playAnim.SetInteger("onPlay", 1);
         yield return new WaitForSeconds(7);
@@ -21,5 +23,15 @@ using UnityEngine.SceneManagement;
     {
         SceneManager.LoadScene(1);
     }
+
+    #region ExitGame
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+    #endregion
+
+
 
 }

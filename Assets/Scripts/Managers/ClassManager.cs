@@ -13,21 +13,30 @@ public class ClassManager : MonoBehaviour
     public bool selectClass = false;
     private ClassData classDataSelected;
     private bool scoreUp = false;
+    [SerializeField] private Animator scoreAnim;
 
     private List<ClassData> classDataList = new List<ClassData>();
 
     private void Start()
     {
         gameManager.OnCorrectClick += AddScore;
-        gameManager.Movilclass += LeadingClass;
+        
         gameManager.TextsetActive += SetActiveClassText;
     }
     
 
     public void SetActiveClassText()
     {
+        StartCoroutine(SetActiveClassText2());
+       
+    }
+
+    private IEnumerator SetActiveClassText2()
+    {
+        yield return new WaitForSeconds(3f);
         if (gameManager.SetActiveText == true)
         {
+            scoreAnim.SetInteger("onScore", 0);
             classText.gameObject.SetActive(false);
         }
         else
@@ -41,6 +50,7 @@ public class ClassManager : MonoBehaviour
         classDataSelected = classData;
         selectClass = true;
         classText.text = classData.ClassName.ToString();
+        classText.gameObject.SetActive(false);
         Debug.Log(classData.ClassName);
 
         gameManager.ClassSelected?.Invoke();
@@ -70,6 +80,7 @@ public class ClassManager : MonoBehaviour
 
          classDataSelected.Score = classDataSelected.Score + 10;
          classText.text = /*classDataSelected.Score.ToString()*/ 10  + " + " + classDataSelected.ClassName ;
+         scoreAnim.SetInteger("onScore", 1);
          Debug.Log("score" + classDataSelected.Score);
          Debug.Log(classDataSelected.ClassName );
 
@@ -79,6 +90,8 @@ public class ClassManager : MonoBehaviour
 
     public void LeadingClass()
     {
+        gameManager.Feedback1.gameObject.SetActive(false);
+        gameManager.Feedback2.gameObject.SetActive(false);
         int max = classDataList[0].Score;
         string maxName = classDataList[0].ClassName;
 
@@ -99,7 +112,7 @@ public class ClassManager : MonoBehaviour
         }
 
         //Debug.Log(maxName + max);
-        Debug.Log(maxName + " score"  + max);
+        Debug.Log(maxName + " score" + max);
 
         gameManager.Movil(maxName, max);
 

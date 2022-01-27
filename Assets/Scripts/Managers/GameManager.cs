@@ -32,6 +32,27 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text feedback1;
     [SerializeField] private Text feedback2;
 
+    public Text Feedback1
+    {
+        get { return feedback1; }
+        set
+        {
+            feedback1 = value;
+        }
+
+    }
+
+    public Text Feedback2
+    {
+        get { return feedback2; }
+        set
+        {
+            feedback2 = value;
+        }
+
+    }
+
+
     public Texture2D cursorTexture;
     public CursorMode cursorMode = CursorMode.Auto;
     public Vector2 hotSpot = Vector2.zero;
@@ -77,7 +98,9 @@ public class GameManager : MonoBehaviour
             //OnWrongClick?.Invoke(health);
             if (correctClicks >= 8)
             {
+               
                 Movilclass?.Invoke();
+
             }
 
         }
@@ -124,8 +147,9 @@ public class GameManager : MonoBehaviour
     {
         littleCircleAnim.SetInteger("onCircle", 0);
 
-
+       
         StartCoroutine(viewClasses());
+
         
     }
 
@@ -137,6 +161,8 @@ public class GameManager : MonoBehaviour
     {
         StartCoroutine(HideClasses());
         StartCoroutine(StopAnim1());
+        setActiveText = false;
+        TextsetActive?.Invoke();
     }
 
     #endregion
@@ -172,15 +198,16 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator viewClasses()
     {
-
-        yield return new WaitForSeconds(0.2f);
+       
+        yield return new WaitForSeconds(1f);
         backroundBlue.gameObject.SetActive(true);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         circleAnim.SetInteger("onSpin", 5);
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
         classButtonAnim.SetBool("chooseClass", true);
         classbuttons.gameObject.SetActive(true);
         setActiveText = true;
+        yield return new WaitForSeconds(1f);
         TextsetActive?.Invoke();
 
     }
@@ -244,11 +271,5 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    #region ExitGame
-
-    public void ExitGame()
-    {
-        Application.Quit();
-    }
-    #endregion
+   
 }
