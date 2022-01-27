@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-
 using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine;
@@ -32,23 +31,26 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text feedback1;
     [SerializeField] private Text feedback2;
 
+    //private string feedback1;
+    //private string feedback2;
+
     public Text Feedback1
     {
         get { return feedback1; }
-        set
-        {
-            feedback1 = value;
-        }
+        //set
+        //{
+        //    feedback1 = value;
+        //}
 
     }
 
     public Text Feedback2
     {
         get { return feedback2; }
-        set
-        {
-            feedback2 = value;
-        }
+        //set
+        //{
+        //    feedback2 = value;
+        //}
 
     }
 
@@ -115,7 +117,6 @@ public class GameManager : MonoBehaviour
         audioSource.Play();
         littleCircleAnim.SetInteger("onCircle", 1);
         StartCoroutine(StopAnim());
-
         StartCoroutine(Feedback(1));
     }
     #endregion
@@ -146,11 +147,7 @@ public class GameManager : MonoBehaviour
     private void SelectAClass()
     {
         littleCircleAnim.SetInteger("onCircle", 0);
-
-       
         StartCoroutine(viewClasses());
-
-        
     }
 
     #endregion
@@ -183,7 +180,8 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         audioSource.clip = sounds[2];
         audioSource.Play();
-        yield return new WaitForSeconds(1f);
+
+        //yield return new WaitForSeconds(1f);
         circleAnim.SetInteger("onSpin", 0);
         littleCircleAnim.SetInteger("onCircle", 0);
         
@@ -203,7 +201,7 @@ public class GameManager : MonoBehaviour
         backroundBlue.gameObject.SetActive(true);
         yield return new WaitForSeconds(1f);
         circleAnim.SetInteger("onSpin", 5);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(3f);
         classButtonAnim.SetBool("chooseClass", true);
         classbuttons.gameObject.SetActive(true);
         setActiveText = true;

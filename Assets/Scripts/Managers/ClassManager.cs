@@ -97,13 +97,13 @@ public class ClassManager : MonoBehaviour
 
         for (int i = 0; i < classDataList.Count; i++)
         {
-            if (classDataList[i].Score == max)
-            {
-                max = 100;
-                maxName = "2 Winners";
-            }
+            //if (classDataList[i].Score == max)
+            //{
+            //    max = 100;
+            //    maxName = "2 Winners";
+            //}
 
-            else if (classDataList[i].Score >= max)
+            if (classDataList[i].Score >= max)
             {
                 max = classDataList[i].Score;
                 maxName = classDataList[i].ClassName;
