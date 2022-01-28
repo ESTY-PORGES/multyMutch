@@ -22,6 +22,8 @@ public class CardManager : MonoBehaviour
     private int indexButtonClicked1;
     private int indexButtonClicked2;
 
+    private int groopSelected;
+
     public int IndexButtonClicked1 => indexButtonClicked1;
     public int IndexButtonClicked2 => indexButtonClicked2;
 
@@ -31,8 +33,12 @@ public class CardManager : MonoBehaviour
 
     public void OnClickCard(PairData pairData)
     {
+        //if (groopSelected == )
+
         if (classManager.selectClass == true && firstImageSelected == false)
         {
+            groopSelected = pairData.Group;
+
             currectClick = false;
             firstImageSelected = true;
             
@@ -41,10 +47,7 @@ public class CardManager : MonoBehaviour
 
             if (pairData.Group == 1)
             {
-
                 currectImg = sprite1[pairData.IndexPair];
-
-                
             }
             else 
             {
@@ -57,7 +60,7 @@ public class CardManager : MonoBehaviour
             StartCoroutine(Flickering(pairData.IndexPair , currectImg));
         }
 
-        else if (firstImageSelected == true)
+        else if (firstImageSelected == true && pairData.Group != groopSelected)
         {
             Debug.Log(pairData.IndexPair);
             indexButtonClicked2 = pairData.IndexPair;
@@ -76,7 +79,7 @@ public class CardManager : MonoBehaviour
             }
          
 
-            if (indexButtonClicked1 == indexButtonClicked2)
+            if (indexButtonClicked1 == indexButtonClicked2 )
             {
                 Debug.Log("correct");
                 gameManager. CorrectClicks++;
@@ -106,7 +109,10 @@ public class CardManager : MonoBehaviour
 
         }
 
-
+        else
+        {
+            return;
+        }
 
     }
 

@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private Text feedback1;
     [SerializeField] private Text feedback2;
+    [SerializeField] private GameObject logo;
 
     //private string feedback1;
     //private string feedback2;
@@ -234,11 +235,13 @@ public class GameManager : MonoBehaviour
 
         feedback1.gameObject.SetActive(true);
         feedback2.gameObject.SetActive(true);
+        logo.gameObject.SetActive(true);
 
         yield return new WaitForSeconds(3.6f);
 
         feedback1.gameObject.SetActive(false);
         feedback2.gameObject.SetActive(false);
+        logo.gameObject.SetActive(false);
 
     }
     #endregion

@@ -15,6 +15,8 @@ public class ClassManager : MonoBehaviour
     private bool scoreUp = false;
     [SerializeField] private Animator scoreAnim;
 
+    [SerializeField] private ClassData[] allclassData;
+
     private List<ClassData> classDataList = new List<ClassData>();
 
     private void Start()
@@ -22,6 +24,12 @@ public class ClassManager : MonoBehaviour
         gameManager.OnCorrectClick += AddScore;
         
         gameManager.TextsetActive += SetActiveClassText;
+
+        for (int i = 0; i < allclassData.Length; i++)
+        {
+            allclassData[i].Score = 0;
+        }
+
     }
     
 
@@ -62,21 +70,21 @@ public class ClassManager : MonoBehaviour
     public void AddScore()
     {
 
-         for (int i = 0; i < classDataList.Count; i++)
-         {
-              if (classDataList[i].ClassName == classDataSelected.ClassName) 
-              {
-                    scoreUp = true;
-                    Debug.Log("+++++++++");
+         //for (int i = 0; i < classDataList.Count; i++)
+         //{
+         //     if (classDataList[i].ClassName == classDataSelected.ClassName) 
+         //     {
+         //           scoreUp = true;
+         //           Debug.Log("+++++++++");
 
-              }
-         }
+         //     }
+         //}
 
-         if (scoreUp == false)
-         {
-                Debug.Log("Reset");
-                classDataSelected.Score = 0;
-         }
+         //if (scoreUp == false)
+         //{
+         //       Debug.Log("Reset");
+         //       classDataSelected.Score = 0;
+         //}
 
          classDataSelected.Score = classDataSelected.Score + 10;
          classText.text = /*classDataSelected.Score.ToString()*/ 10  + " + " + classDataSelected.ClassName ;
