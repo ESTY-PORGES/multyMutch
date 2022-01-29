@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public UnityAction OnWrongClick;
     public UnityAction OnCorrectClick;
     public UnityAction SelectClass;
-    public UnityAction ClassSelected;
+    public UnityAction<ClassData> ClassSelected;
     public UnityAction OnGift;
     public UnityAction Movilclass;
     public UnityAction TextsetActive;
@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Animator giftAnim;
     [SerializeField] private Animator imageAnim;
     [SerializeField] private Animator littleCircleAnim;
+    [SerializeField] private Animator scoreAnim;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip[] sounds;
 
@@ -27,10 +28,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject movilllll;
     [SerializeField] private Text classs;
     [SerializeField] private Text scoree;
+    [SerializeField] private Text classText;
 
     [SerializeField] private Text feedback1;
     [SerializeField] private Text feedback2;
     [SerializeField] private GameObject logo;
+
+    //private string classSelected;
+    private ClassData classDataSelected;
 
     //private string feedback1;
     //private string feedback2;
@@ -114,6 +119,13 @@ public class GameManager : MonoBehaviour
 
     private void Correct()
     {
+        scoreAnim.SetInteger("onScore", 1);
+        classDataSelected.Score = classDataSelected.Score + 10;
+        classText.text = 10 + " + " + classDataSelected.ClassName;
+
+        Debug.Log("score" + classDataSelected.Score);
+        Debug.Log(classDataSelected.ClassName);
+
         audioSource.clip = sounds[0];
         audioSource.Play();
         littleCircleAnim.SetInteger("onCircle", 1);
@@ -147,6 +159,7 @@ public class GameManager : MonoBehaviour
 
     private void SelectAClass()
     {
+       
         littleCircleAnim.SetInteger("onCircle", 0);
         StartCoroutine(viewClasses());
     }
@@ -155,10 +168,15 @@ public class GameManager : MonoBehaviour
 
     #region EndSelectClass
 
-    private void EndSelectClass()
+    private void EndSelectClass(ClassData classData)
     {
+        classDataSelected = classData;
         StartCoroutine(HideClasses());
         StartCoroutine(StopAnim1());
+        classText.text = classDataSelected.ClassName;
+        classText.gameObject.SetActive(false);
+       
+        Debug.Log(classDataSelected);
         setActiveText = false;
         TextsetActive?.Invoke();
     }
@@ -171,6 +189,7 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         littleCircleAnim.SetInteger("onCircle", 0);
+
     }
     #endregion
 
@@ -184,6 +203,7 @@ public class GameManager : MonoBehaviour
 
         //yield return new WaitForSeconds(1f);
         circleAnim.SetInteger("onSpin", 0);
+       
         littleCircleAnim.SetInteger("onCircle", 0);
         
         yield return new WaitForSeconds(1.5f);
@@ -202,11 +222,17 @@ public class GameManager : MonoBehaviour
         backroundBlue.gameObject.SetActive(true);
         yield return new WaitForSeconds(1f);
         circleAnim.SetInteger("onSpin", 5);
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
+        scoreAnim.SetInteger("onScore", 0);
+        classText.gameObject.SetActive(false);
+
+        yield return new WaitForSeconds(2f);
+      
         classButtonAnim.SetBool("chooseClass", true);
         classbuttons.gameObject.SetActive(true);
         setActiveText = true;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.1f);
+       
         TextsetActive?.Invoke();
 
     }
@@ -250,6 +276,7 @@ public class GameManager : MonoBehaviour
     #region IEnumerator HideClasses
     private IEnumerator HideClasses()
     {
+
         circleAnim.SetInteger("onSpin", 6);
 
         classButtonAnim.SetBool("chooseClass", false);
@@ -257,6 +284,8 @@ public class GameManager : MonoBehaviour
         setActiveText = false;
         littleCircleAnim.SetInteger("onCircle", 1);
         yield return new WaitForSeconds(2f);
+        classText.gameObject.SetActive(true);
+     
 
         backroundBlue.gameObject.SetActive(false);
     }
