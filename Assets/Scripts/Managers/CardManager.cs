@@ -86,8 +86,8 @@ public class CardManager : MonoBehaviour
                 currectClick = true;
 
                 gameManager.OnCorrectClick?.Invoke();
+                gameManager.ViewClass?.Invoke();
 
-           
 
                 Color tmp2 = sprite1[pairData.IndexPair].GetComponent<Image>().color;
                 tmp2.a = 0.3f;

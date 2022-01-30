@@ -8,8 +8,7 @@ public class ClassManager : MonoBehaviour
     [SerializeField] private ClassData[] allclassData;
     public bool selectClass = false;
   
-    
-
+   
     private void Start()
     {
         //Resets the data 
