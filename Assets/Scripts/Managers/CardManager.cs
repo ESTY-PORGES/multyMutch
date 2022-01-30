@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine;
 
 
+
 public class CardManager : MonoBehaviour
 {
     private bool firstImageSelected = false;
@@ -16,6 +17,7 @@ public class CardManager : MonoBehaviour
 
     [SerializeField] private GameManager gameManager;
     [SerializeField] private ClassManager classManager;
+    [SerializeField] private PairData[] pairData2;
 
     [SerializeField] private ParticleSystem particles;
 
@@ -27,9 +29,27 @@ public class CardManager : MonoBehaviour
     public int IndexButtonClicked1 => indexButtonClicked1;
     public int IndexButtonClicked2 => indexButtonClicked2;
 
+    public void Start()
+    {
+        for (int i = 0; i < pairData2.Length; i++)
+        {
+            pairData2[i].Sprite = null;
+        }
+        for (int i = 0; i < pairData2.Length; i++)
 
-
-    #region ClickCard
+        {
+            if (i % 2 == 0)
+            {
+                pairData2[i].Sprite = sprite1[i].sprite;
+            }
+            else
+            {
+                pairData2[i].Sprite = sprite2[i].sprite;
+            }
+           
+        }
+    }
+   
 
     public void OnClickCard(PairData pairData)
     {
@@ -116,10 +136,10 @@ public class CardManager : MonoBehaviour
 
     }
 
-    #endregion
+   
 
 
-    # region AddBonus
+   
     public void  AddBonus()
     {
 
@@ -130,10 +150,7 @@ public class CardManager : MonoBehaviour
             gameManager.OnCorrectClick?.Invoke();
         }
     }
-    #endregion
-
-    #region IEnumerator Flickering
-
+   
     private IEnumerator Flickering(int currentIndex, Image image)
     {
 
@@ -167,8 +184,7 @@ public class CardManager : MonoBehaviour
         }
     }
 
-    #endregion
-
+   
 }
 
 
