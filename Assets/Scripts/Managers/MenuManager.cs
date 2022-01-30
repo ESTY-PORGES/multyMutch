@@ -24,14 +24,18 @@ using UnityEngine.SceneManagement;
         SceneManager.LoadScene(1);
     }
 
-    #region ExitGame
+    public void Scene2()
+    {
+        SceneManager.LoadScene(2);
+    }
+
+
 
     public void ExitGame()
     {
         Application.Quit();
     }
-    #endregion
-
+  
 
 
 }

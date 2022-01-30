@@ -302,6 +302,7 @@ MonoBehaviour:
   - {fileID: 0}
   gameManager: {fileID: 1140538313}
   classManager: {fileID: 1182094713}
+  pairData2: []
   particles: {fileID: 2950234305030860370}
 --- !u!4 &34863479
 Transform:
@@ -7076,8 +7077,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1140538313}
-        m_MethodName: ExitGame
+      - m_Target: {fileID: 0}
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
