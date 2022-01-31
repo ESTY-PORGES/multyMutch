@@ -52,9 +52,10 @@ public class Animations : MonoBehaviour
         StartCoroutine(HideClasses());
     }
 
-    private void GetGift()
+    private void GetGift(int index)
     {
-        giftAnim.SetInteger("onGift", 1);
+        giftAnim.SetInteger("onBonus", index);
+        StartCoroutine(StopAnim1());
     }
 
     private void CallCoroutine()
@@ -99,5 +100,7 @@ public class Animations : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         littleCircleAnim.SetInteger("onCircle", 0);
+        yield return new WaitForSeconds(2f);
+        giftAnim.SetInteger("onBonus", 0);
     }
 }

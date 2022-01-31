@@ -160,10 +160,10 @@ public class CardManager : MonoBehaviour
     public void  AddBonus()
     {
 
-        if (indexButtonClicked1 == 1)
+        if (indexButtonClicked1 == 1 || indexButtonClicked1 == 2)
         {
             particles.Play();
-            gameManager.OnGift?.Invoke();
+            gameManager.OnGift?.Invoke(indexButtonClicked1);
             gameManager.OnCorrectClick?.Invoke();
         }
     }

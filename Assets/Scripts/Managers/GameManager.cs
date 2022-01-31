@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public UnityAction OnCorrectClick;
     public UnityAction SelectClass;
     public UnityAction<ClassData> ClassSelected;
-    public UnityAction OnGift;
+    public UnityAction<int> OnGift;
     public UnityAction Movilclass;
     public UnityAction TextsetActive;
     public UnityAction ViewClass;
