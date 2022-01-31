@@ -16,3 +16,6 @@ MonoBehaviour:
   group: 2
   indexPair: 1
   sprite: {fileID: 21300000, guid: 8fae51a831211c94bab9b61d17604978, type: 3}
+  sprite2:
+  - {fileID: 21300000, guid: 8fae51a831211c94bab9b61d17604978, type: 3}
+  - {fileID: 21300000, guid: 7e29846fe295ac44db6f76d78554ecab, type: 3}

@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class CardManager : MonoBehaviour
 {
+    [SerializeField] private int correctScene = 0;
+
     private bool firstImageSelected = false;
 
     private bool currectClick = false;
@@ -33,18 +35,21 @@ public class CardManager : MonoBehaviour
     {
         for (int i = 0; i < pairData2.Length; i++)
         {
-            pairData2[i].Sprite = null;
+            pairData2[i].Sprite2[correctScene] = null;
+            //pairData2[i].Sprite = null;
         }
         for (int i = 0; i < pairData2.Length; i++)
 
         {
             if (i % 2 == 0)
             {
-                pairData2[i].Sprite = sprite1[i].sprite;
+                pairData2[i].Sprite2[correctScene] = sprite1[i].sprite;
+                //pairData2[i].Sprite = sprite1[i].sprite;
             }
             else
             {
-                pairData2[i].Sprite = sprite2[i].sprite;
+                pairData2[i].Sprite2[correctScene] = sprite2[i].sprite;
+                //pairData2[i].Sprite = sprite2[i].sprite;
             }
            
         }
@@ -75,7 +80,8 @@ public class CardManager : MonoBehaviour
                 
             }
 
-            currectImg.sprite = pairData.Sprite;
+            currectImg.sprite = pairData.Sprite2[correctScene];
+            //currectImg.sprite = pairData.Sprite;
 
             StartCoroutine(Flickering(pairData.IndexPair , currectImg));
         }
@@ -90,12 +96,14 @@ public class CardManager : MonoBehaviour
 
             if (pairData.Group == 2)
             {
-                sprite2[pairData.IndexPair].sprite = pairData.Sprite;
-                
+                sprite2[pairData.IndexPair].sprite = pairData.Sprite2[correctScene];
+                //sprite2[pairData.IndexPair].sprite = pairData.Sprite;
+
             }
             else 
             {
-                sprite1[pairData.IndexPair].sprite = pairData.Sprite;
+                sprite1[pairData.IndexPair].sprite = pairData.Sprite2[correctScene];
+                //sprite1[pairData.IndexPair].sprite = pairData.Sprite;
             }
          
 
