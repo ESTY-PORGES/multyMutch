@@ -15,7 +15,9 @@ MonoBehaviour:
   pairName: Pair 7
   group: 2
   indexPair: 6
-  sprite: {fileID: 21300000, guid: 35cf74444be02d14f82a1f996e8a6805, type: 3}
+  sprite: {fileID: 21300000, guid: a84ea3637e776c346a298cfb8d1746f8, type: 3}
   sprite2:
-  - {fileID: 21300000, guid: 35cf74444be02d14f82a1f996e8a6805, type: 3}
-  - {fileID: 21300000, guid: d179c6815a67dab499f697af11014c38, type: 3}
+  - {fileID: 21300000, guid: a84ea3637e776c346a298cfb8d1746f8, type: 3}
+  - {fileID: 21300000, guid: bee882f15a18d6547bd7dc2e1d4852b8, type: 3}
+  - {fileID: 21300000, guid: 4edbff7fbd7bae8438b78176b6bd1783, type: 3}
+  - {fileID: 21300000, guid: 8341bb4ecc72b084392e45e75106c254, type: 3}

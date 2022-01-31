@@ -26,6 +26,16 @@ public class GameManager : MonoBehaviour
     public CursorMode cursorMode = CursorMode.Auto;
     public Vector2 hotSpot = Vector2.zero;
 
+    [SerializeField] private int correctScene;
+    public int CorrectScene
+    {
+        get { return correctScene; }
+        set
+        {
+            correctScene = value;
+        }
+    }
+
     private bool setActiveText;
     private int correctClicks = 0;
     public bool SetActiveText

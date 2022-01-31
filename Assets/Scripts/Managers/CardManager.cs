@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class CardManager : MonoBehaviour
 {
-    [SerializeField] private int correctScene = 0;
+   
 
     private bool firstImageSelected = false;
 
@@ -35,23 +35,23 @@ public class CardManager : MonoBehaviour
     {
         for (int i = 0; i < pairData2.Length; i++)
         {
-            pairData2[i].Sprite2[correctScene] = null;
-            //pairData2[i].Sprite = null;
+            pairData2[i].Sprite2[gameManager.CorrectScene] = null;
+
         }
         for (int i = 0; i < pairData2.Length; i++)
 
         {
             if (i % 2 == 0)
             {
-                pairData2[i].Sprite2[correctScene] = sprite1[i].sprite;
-                //pairData2[i].Sprite = sprite1[i].sprite;
+                pairData2[i].Sprite2[gameManager.CorrectScene] = sprite1[i].sprite;
+
             }
             else
             {
-                pairData2[i].Sprite2[correctScene] = sprite2[i].sprite;
-                //pairData2[i].Sprite = sprite2[i].sprite;
+                pairData2[i].Sprite2[gameManager.CorrectScene] = sprite2[i].sprite;
+
             }
-           
+
         }
     }
    
@@ -80,10 +80,11 @@ public class CardManager : MonoBehaviour
                 
             }
 
-            currectImg.sprite = pairData.Sprite2[correctScene];
+            currectImg.sprite = pairData.Sprite2[gameManager.CorrectScene];
             //currectImg.sprite = pairData.Sprite;
 
             StartCoroutine(Flickering(pairData.IndexPair , currectImg));
+            
         }
 
         else if (firstImageSelected == true && pairData.Group != groopSelected)
@@ -96,13 +97,13 @@ public class CardManager : MonoBehaviour
 
             if (pairData.Group == 2)
             {
-                sprite2[pairData.IndexPair].sprite = pairData.Sprite2[correctScene];
+                sprite2[pairData.IndexPair].sprite = pairData.Sprite2[gameManager.CorrectScene];
                 //sprite2[pairData.IndexPair].sprite = pairData.Sprite;
 
             }
             else 
             {
-                sprite1[pairData.IndexPair].sprite = pairData.Sprite2[correctScene];
+                sprite1[pairData.IndexPair].sprite = pairData.Sprite2[gameManager.CorrectScene];
                 //sprite1[pairData.IndexPair].sprite = pairData.Sprite;
             }
          
@@ -124,9 +125,11 @@ public class CardManager : MonoBehaviour
                 tmp3.a = 0.3f;
                 sprite2[pairData.IndexPair].GetComponent<Image>().color = tmp3;
                 AddBonus();
+                
 
             }
-
+           
+           
             else
             {
 
@@ -136,7 +139,13 @@ public class CardManager : MonoBehaviour
             }
 
         }
-
+        else if (firstImageSelected == true && pairData.Group == groopSelected)
+                {
+                gameManager.OnWrongClick?.Invoke();
+                currectClick = false;
+                Debug.Log("notCorrect");
+                firstImageSelected = false;
+                }
         else
         {
             return;
@@ -192,7 +201,10 @@ public class CardManager : MonoBehaviour
         }
     }
 
-   
+    
+
+
+
 }
 
 

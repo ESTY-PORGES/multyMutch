@@ -29,6 +29,7 @@ public class Audio : MonoBehaviour
     {
         audioSource.clip = sounds[1];
         audioSource.Play();
+        StartCoroutine(StopAudio());
     }
     private IEnumerator StopAudio()
     {

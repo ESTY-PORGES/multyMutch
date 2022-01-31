@@ -23,7 +23,8 @@ public class Animations : MonoBehaviour
        gameManager.OnGift += GetGift;
        gameManager.ViewClass += CallCoroutine;
        gameManager.OnWrongClick += NotCorrect2;
-       imageAnim.SetInteger("onImage", 1);
+       imageAnim.SetInteger("onImage", 6);
+       imageAnim.SetInteger("onImage", gameManager.CorrectScene);
        littleCircleAnim.SetInteger("onCircle", 1);
        yield return new WaitForSeconds(2f);
        StartCoroutine(viewClasses());
@@ -41,10 +42,8 @@ public class Animations : MonoBehaviour
     private void NotCorrect2()
     {
         circleAnim.SetInteger("onSpin", 2);
-        
         StartCoroutine(StopAnim());
-
-        
+        StartCoroutine(viewClasses());
     }
 
     private void EndSelectClass2(ClassData classData)
@@ -89,6 +88,7 @@ public class Animations : MonoBehaviour
     private IEnumerator StopAnim()
     {
         yield return new WaitForSeconds(1f);
+        circleAnim.SetInteger("onSpin", 0);
         littleCircleAnim.SetInteger("onCircle", 0);
         yield return new WaitForSeconds(2f);
         scoreAnim.SetInteger("onScore", 0);

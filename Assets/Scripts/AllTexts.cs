@@ -34,6 +34,7 @@ public class AllTexts : MonoBehaviour
     private void NotCorrect3()
     {
       StartCoroutine(Feedback3(2));
+      StartCoroutine(viewClasses3());
     }
 
     private void EndSelectClass3(ClassData classData)
