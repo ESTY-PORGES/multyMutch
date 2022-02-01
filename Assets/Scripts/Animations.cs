@@ -13,6 +13,7 @@ public class Animations : MonoBehaviour
     [SerializeField] private Animator giftAnim;
     [SerializeField] private Animator classButtonAnim;
     [SerializeField] private Animator circleAnim;
+    [SerializeField] private Animator movilAnim;
 
     [SerializeField] private GameObject backroundBlue;
     [SerializeField] private GameObject classbuttons;
@@ -119,4 +120,6 @@ public class Animations : MonoBehaviour
         yield return new WaitForSeconds(2f);
         giftAnim.SetInteger("onBonus", 0);
     }
+
+    
 }

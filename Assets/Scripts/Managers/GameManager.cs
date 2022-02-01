@@ -102,9 +102,20 @@ public class GameManager : MonoBehaviour
   
     public void Movil(string class1, int score1)
     {
-        movilllll.gameObject.SetActive(true);
         scoree.text = score1.ToString();
         classs.text = class1;
+
+        if (correctScene == 4)
+        {
+            movilllll.gameObject.SetActive(true);
+            movilllll.GetComponent<Animator>().SetInteger("end", 2);
+        }
+        else
+        {
+            movilllll.gameObject.SetActive(true);
+            movilllll.GetComponent<Animator>().SetInteger("end", 1);
+        }
+
     }
    
    public void NextScene()

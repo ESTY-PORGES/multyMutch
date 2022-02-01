@@ -901,6 +901,7 @@ MonoBehaviour:
   giftAnim: {fileID: 1546383916}
   classButtonAnim: {fileID: 1239970519}
   circleAnim: {fileID: 1841783445}
+  movilAnim: {fileID: 1142263244}
   backroundBlue: {fileID: 1868918035}
   classbuttons: {fileID: 1239970517}
 --- !u!4 &131301953
