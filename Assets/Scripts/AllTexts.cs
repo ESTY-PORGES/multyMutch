@@ -8,7 +8,9 @@ public class AllTexts : MonoBehaviour
 {
     [SerializeField] private GameManager gameManager;
     [SerializeField] private Text classText;
-   
+    [SerializeField] private Text[] giftText;
+    //private Queue<string> giftQueue = new Queue<string>();
+    private int BonusNum = 0;
     [SerializeField] private GameObject logo;
 
     void Start()
@@ -17,6 +19,7 @@ public class AllTexts : MonoBehaviour
         gameManager.ClassSelected += EndSelectClass3;
         gameManager.ViewClass += CallCoroutine3;
         gameManager.OnWrongClick += NotCorrect3;
+        gameManager.OnGift += GetGift3;
     }
 
     private void Correct3()
@@ -27,6 +30,14 @@ public class AllTexts : MonoBehaviour
         Debug.Log("score" + gameManager.ClassDataSelected.Score);
         Debug.Log(gameManager.ClassDataSelected.ClassName);
         StartCoroutine(Feedback3(1));
+        
+
+
+    }
+
+    private void GetGift3(int index)
+    {
+        AddBonus3(gameManager.ClassDataSelected.ClassName);
     }
 
     private void NotCorrect3()
@@ -95,6 +106,17 @@ public class AllTexts : MonoBehaviour
         gameManager.Feedback1.gameObject.SetActive(false);
         gameManager.Feedback2.gameObject.SetActive(false);
         logo.gameObject.SetActive(false);
+        
 
+    }
+
+    private void AddBonus3(string className)
+    {
+
+        //giftQueue.Enqueue("לללללל" + " + " + className);
+        //giftQueue.Enqueue("חחחחחחח" + " + " + className);
+        giftText[BonusNum].text = className;
+        BonusNum++;
+        //Debug.Log(giftQueue.Dequeue());
     }
 }

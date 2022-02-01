@@ -160,8 +160,9 @@ public class CardManager : MonoBehaviour
         if (indexButtonClicked1 == 1 /*|| indexButtonClicked1 == 2*/)
         {
             particles.Play();
+           
             gameManager.OnGift?.Invoke(indexButtonClicked1);
-            gameManager.OnCorrectClick?.Invoke();
+            //gameManager.OnCorrectClick?.Invoke();
         }
     }
    

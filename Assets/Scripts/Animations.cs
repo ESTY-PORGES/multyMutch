@@ -54,7 +54,23 @@ public class Animations : MonoBehaviour
 
     private void GetGift(int index)
     {
-        giftAnim.SetInteger("onBonus", index);
+        if(gameManager.CorrectScene == 0)
+        {
+            giftAnim.SetInteger("onBonus", index);
+        }
+        else if (gameManager.CorrectScene == 1)
+        {
+            giftAnim.SetInteger("onBonus", index+2);
+        }
+        else if (gameManager.CorrectScene == 2)
+        {
+            giftAnim.SetInteger("onBonus", index+4);
+        }
+        else if (gameManager.CorrectScene == 3)
+        {
+            giftAnim.SetInteger("onBonus", index + 6);
+        }
+
         StartCoroutine(StopAnim1());
     }
 
