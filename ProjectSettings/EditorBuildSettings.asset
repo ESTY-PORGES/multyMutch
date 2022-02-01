@@ -14,4 +14,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Etty/Scene2.unity
     guid: 1546e1c4b0ff5014a982451c9527fc6c
+  - enabled: 1
+    path: Assets/Etty/Scene3.unity
+    guid: 57f9c507c4261704d873ee9ac42c753f
+  - enabled: 1
+    path: Assets/Etty/Scene4.unity
+    guid: 812ecdb19a3dee1498c8a2264c478225
+  - enabled: 1
+    path: Assets/Etty/Scene5.unity
+    guid: 6889eaa09f9cefa4aa4d3739826f3ab4
   m_configObjects: {}

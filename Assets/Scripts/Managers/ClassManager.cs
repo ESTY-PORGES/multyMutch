@@ -12,10 +12,10 @@ public class ClassManager : MonoBehaviour
     private void Start()
     {
         //Resets the data 
-        for (int i = 0; i < allclassData.Length; i++)
-        {
-            allclassData[i].Score = 0;
-        }
+        //for (int i = 0; i < allclassData.Length; i++)
+        //{
+        //    allclassData[i].Score = 0;
+        //}
     }
 
 

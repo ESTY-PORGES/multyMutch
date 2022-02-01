@@ -24,20 +24,17 @@ public class AllTexts : MonoBehaviour
 
     private void Correct3()
     {
-
         gameManager.ClassDataSelected.Score = gameManager.ClassDataSelected.Score + 10;
         classText.text = 10 + " + " + gameManager.ClassDataSelected.ClassName;
         Debug.Log("score" + gameManager.ClassDataSelected.Score);
         Debug.Log(gameManager.ClassDataSelected.ClassName);
         StartCoroutine(Feedback3(1));
-        
-
-
     }
 
     private void GetGift3(int index)
     {
         AddBonus3(gameManager.ClassDataSelected.ClassName);
+        StartCoroutine(Feedback3(3));
     }
 
     private void NotCorrect3()
@@ -90,11 +87,16 @@ public class AllTexts : MonoBehaviour
             gameManager.Feedback1.text = "!יפוי";
             gameManager.Feedback2.text = "!הרושק תא";
         }
-        else
+        else if(ifCorrect == 2)
         {
             gameManager.Feedback1.text = "...מממ";
             gameManager.Feedback2.text = "?רשקה המ";
 
+        }
+        else
+        {
+            gameManager.Feedback1.text = "!תיכז";
+            gameManager.Feedback2.text = "!ךילע רופת";
         }
 
         gameManager.Feedback1.gameObject.SetActive(true);

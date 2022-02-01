@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -60,7 +61,6 @@ public class GameManager : MonoBehaviour
     }
 
 
-
     public Text Feedback1
     {
         get { return feedback1; }
@@ -107,6 +107,13 @@ public class GameManager : MonoBehaviour
         classs.text = class1;
     }
    
+   public void NextScene()
+   {
+        SceneManager.LoadScene(correctScene + 2);
+   }
 
-   
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
 }
