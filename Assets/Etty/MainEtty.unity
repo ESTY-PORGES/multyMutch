@@ -2270,6 +2270,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OnClickClass
       objectReference: {fileID: 0}
+    - target: {fileID: 3096737639517712238, guid: e43fb5ce711cb264b9e9297dd7c6d4b0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e43fb5ce711cb264b9e9297dd7c6d4b0, type: 3}
 --- !u!1 &603811386
@@ -2458,7 +2463,7 @@ RectTransform:
   m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_Children: []
   m_Father: {fileID: 2133169963}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -3656,7 +3661,7 @@ RectTransform:
   - {fileID: 1309506163}
   - {fileID: 839406422}
   m_Father: {fileID: 2133169963}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4658,7 +4663,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 35
+  m_Text: 0
 --- !u!222 &1391526584
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6099,7 +6104,7 @@ RectTransform:
   - {fileID: 1391526582}
   - {fileID: 327494383782273150}
   m_Father: {fileID: 2133169963}
-  m_RootOrder: 12
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6750,7 +6755,7 @@ RectTransform:
   m_Children:
   - {fileID: 603811387}
   m_Father: {fileID: 2133169963}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -7007,7 +7012,7 @@ RectTransform:
   m_Children:
   - {fileID: 2043921391}
   m_Father: {fileID: 2133169963}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -7837,11 +7842,11 @@ RectTransform:
   - {fileID: 1551247014}
   - {fileID: 1239970518}
   - {fileID: 2950234305030860371}
-  - {fileID: 1830065095}
   - {fileID: 1939367659}
   - {fileID: 1927877930}
   - {fileID: 1048814883}
   - {fileID: 688217324}
+  - {fileID: 1830065095}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

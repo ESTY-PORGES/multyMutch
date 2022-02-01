@@ -6,10 +6,7 @@ using UnityEngine;
 
 public class CardManager : MonoBehaviour
 {
-   
-
     private bool firstImageSelected = false;
-
     private bool currectClick = false;
 
     [SerializeField] private Image[] sprite1;
@@ -160,7 +157,7 @@ public class CardManager : MonoBehaviour
     public void  AddBonus()
     {
 
-        if (indexButtonClicked1 == 1 || indexButtonClicked1 == 2)
+        if (indexButtonClicked1 == 1 /*|| indexButtonClicked1 == 2*/)
         {
             particles.Play();
             gameManager.OnGift?.Invoke(indexButtonClicked1);

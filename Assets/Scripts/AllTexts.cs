@@ -11,8 +11,6 @@ public class AllTexts : MonoBehaviour
    
     [SerializeField] private GameObject logo;
 
-    
-
     void Start()
     {
         gameManager.OnCorrectClick += Correct3;
@@ -74,7 +72,7 @@ public class AllTexts : MonoBehaviour
     private IEnumerator Feedback3(int ifCorrect)
     {
 
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(1f);
 
         if (ifCorrect == 1)
         {
@@ -92,7 +90,7 @@ public class AllTexts : MonoBehaviour
         gameManager.Feedback2.gameObject.SetActive(true);
         logo.gameObject.SetActive(true);
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(4f);
 
         gameManager.Feedback1.gameObject.SetActive(false);
         gameManager.Feedback2.gameObject.SetActive(false);
