@@ -1527,6 +1527,12 @@ MonoBehaviour:
   - {fileID: 254357218}
   - {fileID: 1948685534}
   - {fileID: 311108126}
+  giftsText:
+  - 
+  - 
+  - 
+  - 
+  - 
   logo: {fileID: 839406421}
 --- !u!4 &270585571
 Transform:

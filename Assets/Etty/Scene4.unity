@@ -1520,7 +1520,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1140538313}
   classText: {fileID: 1240315721}
-  giftText: []
+  giftText:
+  - {fileID: 834895016}
+  - {fileID: 253383681}
+  - {fileID: 2034608069}
+  - {fileID: 1268578749}
+  - {fileID: 39652095}
+  giftsText:
+  - 
+  - 
+  - 
+  - 
+  - 
   logo: {fileID: 839406421}
 --- !u!4 &270585571
 Transform:

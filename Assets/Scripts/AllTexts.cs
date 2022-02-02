@@ -9,7 +9,7 @@ public class AllTexts : MonoBehaviour
     [SerializeField] private GameManager gameManager;
     [SerializeField] private Text classText;
     [SerializeField] private Text[] giftText;
-    private string[] giftsText;
+    [SerializeField] private string[] giftsText;
     Dictionary<int, string> allGifts = new Dictionary<int, string>();
 
     private int BonusNum = 0;
@@ -22,6 +22,10 @@ public class AllTexts : MonoBehaviour
         gameManager.ViewClass += CallCoroutine3;
         gameManager.OnWrongClick += NotCorrect3;
         gameManager.OnGift += GetGift3;
+        if (gameManager.CorrectScene == 4)
+        {
+            PrintClassList();
+        }
     }
 
     private void Correct3()
@@ -120,28 +124,59 @@ public class AllTexts : MonoBehaviour
     {
         //giftText[gameManager.CorrectScene].text = className;
         //giftsText[gameManager.CorrectScene] = className;
+        giftsText[BonusNum] = className;
 
-        allGifts.Add(gameManager.CorrectScene, className);
-
-        if (gameManager.CorrectScene == 4)
+        if (gameManager.CorrectScene == 0)
         {
-            PrintClassList();
-
+            PlayerPrefs.SetString("Bonus", giftsText[BonusNum]);
+            Debug.Log("Bonus");
         }
 
-        BonusNum++;
-        Debug.Log(giftsText);
+        else if(gameManager.CorrectScene == 1)
+        {
+            
+            PlayerPrefs.SetString("Bonus1", giftsText[BonusNum]);
+            Debug.Log("Bonus1");
+        }
+        else if (gameManager.CorrectScene == 2)
+        {
+            
+            
+            PlayerPrefs.SetString("Bonus2", giftsText[BonusNum]);
+            Debug.Log("Bonus2");
+        }
+        else if (gameManager.CorrectScene == 3)
+        {
+                   
+            PlayerPrefs.SetString("Bonus3", giftsText[BonusNum]);
+            Debug.Log("Bonus3" + giftsText[BonusNum].ToString());
+        }
+
+
+         BonusNum++;
     }
+    //    allGifts.Add(gameManager.CorrectScene, className);
+
+    //   
+
+    //   
+    //    Debug.Log(giftsText);
+    //}
 
     private void PrintClassList()
     {
-
-        //giftText[0].text = allGifts[0];
-        //giftText[1].text = allGifts[1];
-        //giftText[2].text = allGifts[2];
-        //giftText[3].text = allGifts[3];
-        giftText[4].text = allGifts[4];
+       
+        giftText[0].text = PlayerPrefs.GetString("Bonus", "");
+       
+        giftText[1].text = PlayerPrefs.GetString("Bonus1", ""); 
+       
+        giftText[2].text = PlayerPrefs.GetString("Bonus2", "");
+       
+        giftText[3].text = PlayerPrefs.GetString("Bonus3", ""); 
+       
+       
 
     }
+
 }
 

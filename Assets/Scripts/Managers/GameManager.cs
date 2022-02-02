@@ -120,8 +120,10 @@ public class GameManager : MonoBehaviour
    
    public void NextScene()
    {
+        movilllll.GetComponent<Animator>().SetInteger("end", 0);
         SceneManager.LoadScene(correctScene + 2);
-   }
+       
+    }
 
     public void ExitGame()
     {

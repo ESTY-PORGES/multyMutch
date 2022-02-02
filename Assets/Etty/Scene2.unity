@@ -1516,11 +1516,17 @@ MonoBehaviour:
   gameManager: {fileID: 1140538313}
   classText: {fileID: 1240315721}
   giftText:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 177644357}
+  - {fileID: 1074420925}
+  - {fileID: 878419215}
+  - {fileID: 1528124208}
+  - {fileID: 2108965740}
+  giftsText:
+  - 
+  - 
+  - 
+  - 
+  - 
   logo: {fileID: 839406421}
 --- !u!4 &270585571
 Transform:
