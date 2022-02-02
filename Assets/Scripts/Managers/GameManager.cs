@@ -108,8 +108,17 @@ public class GameManager : MonoBehaviour
         scoree.text = score1.ToString();
         classs.text = class1;
 
-        scoree2.text = score2.ToString();
-        classs2.text = class2;
+        if (score2 == 100)
+        {
+            scoree2.text = null;
+            classs2.text = null;
+
+        }
+        else
+        {
+            scoree2.text = score2.ToString();
+            classs2.text = class2;
+        }
 
         if (correctScene == 4)
         {

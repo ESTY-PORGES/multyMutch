@@ -44,8 +44,17 @@ public class ClassManager : MonoBehaviour
 
         for (int i = 0; i < allclassData.Length; i++)
         {
+
+            if (allclassData[0].Score == allclassData[1].Score)
+            {
+                Debug.Log("2 WINNERS");
+                
+                //Send Data of LeadingClass to Movil function
+                gameManager.Movil("2ט 1ט", allclassData[0].Score, "", 100);
+                return;
+            }
            
-            if (allclassData[i].Score >= max)
+            else if (allclassData[i].Score >= max)
             {
                 max = allclassData[i].Score;
                 maxName = allclassData[i].ClassName;
