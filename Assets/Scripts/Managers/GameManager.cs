@@ -18,6 +18,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject movilllll;
     [SerializeField] private Text classs;
     [SerializeField] private Text scoree;
+    [SerializeField] private Text classs2;
+    [SerializeField] private Text scoree2;
+
     [SerializeField] private Text classText;
 
     [SerializeField] private Text feedback1;
@@ -100,10 +103,13 @@ public class GameManager : MonoBehaviour
     }
     
   
-    public void Movil(string class1, int score1)
+    public void Movil(string class1, int score1, string class2, int score2)
     {
         scoree.text = score1.ToString();
         classs.text = class1;
+
+        scoree2.text = score2.ToString();
+        classs2.text = class2;
 
         if (correctScene == 4)
         {

@@ -151,6 +151,10 @@ public class AllTexts : MonoBehaviour
             PlayerPrefs.SetString("Bonus3", giftsText[BonusNum]);
             Debug.Log("Bonus3" + giftsText[BonusNum].ToString());
         }
+        else
+        {
+            return;
+        }
 
 
          BonusNum++;

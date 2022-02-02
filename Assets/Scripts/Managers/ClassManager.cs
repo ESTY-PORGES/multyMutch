@@ -39,6 +39,9 @@ public class ClassManager : MonoBehaviour
         int max = allclassData[0].Score;
         string maxName = allclassData[0].ClassName;
 
+        int less = allclassData[0].Score;
+        string lessName = allclassData[0].ClassName;
+
         for (int i = 0; i < allclassData.Length; i++)
         {
            
@@ -48,11 +51,18 @@ public class ClassManager : MonoBehaviour
                 maxName = allclassData[i].ClassName;
             }
 
+            else 
+            {
+                less = allclassData[i].Score;
+                lessName = allclassData[i].ClassName;
+            }
         }
+        
      
         Debug.Log(maxName + " score" + max);
+        Debug.Log(lessName + " score" + less);
         //Send Data of LeadingClass to Movil function
-        gameManager.Movil(maxName, max);
+        gameManager.Movil(maxName, max, lessName, less );
     }
 
 }

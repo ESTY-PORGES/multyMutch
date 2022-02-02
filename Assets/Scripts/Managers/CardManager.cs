@@ -137,7 +137,7 @@ public class CardManager : MonoBehaviour
 
         }
         else if (firstImageSelected == true && pairData.Group == groopSelected)
-                {
+        {
                 gameManager.OnWrongClick?.Invoke();
                 currectClick = false;
                 Debug.Log("notCorrect");
@@ -157,7 +157,7 @@ public class CardManager : MonoBehaviour
     public void  AddBonus()
     {
 
-        if (indexButtonClicked1 == 1 /*|| indexButtonClicked1 == 2*/)
+        if (indexButtonClicked1 == 1 && gameManager.CorrectScene != 4)
         {
             particles.Play();
            
