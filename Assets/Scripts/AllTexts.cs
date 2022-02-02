@@ -9,7 +9,9 @@ public class AllTexts : MonoBehaviour
     [SerializeField] private GameManager gameManager;
     [SerializeField] private Text classText;
     [SerializeField] private Text[] giftText;
-    //private Queue<string> giftQueue = new Queue<string>();
+    private string[] giftsText;
+    Dictionary<int, string> allGifts = new Dictionary<int, string>();
+
     private int BonusNum = 0;
     [SerializeField] private GameObject logo;
 
@@ -35,12 +37,14 @@ public class AllTexts : MonoBehaviour
     {
         AddBonus3(gameManager.ClassDataSelected.ClassName);
         StartCoroutine(Feedback3(3));
+
+
     }
 
     private void NotCorrect3()
     {
-      StartCoroutine(Feedback3(2));
-      StartCoroutine(viewClasses3());
+        StartCoroutine(Feedback3(2));
+        StartCoroutine(viewClasses3());
     }
 
     private void EndSelectClass3(ClassData classData)
@@ -87,7 +91,7 @@ public class AllTexts : MonoBehaviour
             gameManager.Feedback1.text = "!יפוי";
             gameManager.Feedback2.text = "!הרושק תא";
         }
-        else if(ifCorrect == 2)
+        else if (ifCorrect == 2)
         {
             gameManager.Feedback1.text = "...מממ";
             gameManager.Feedback2.text = "?רשקה המ";
@@ -108,17 +112,36 @@ public class AllTexts : MonoBehaviour
         gameManager.Feedback1.gameObject.SetActive(false);
         gameManager.Feedback2.gameObject.SetActive(false);
         logo.gameObject.SetActive(false);
-        
+
 
     }
 
     private void AddBonus3(string className)
     {
+        //giftText[gameManager.CorrectScene].text = className;
+        //giftsText[gameManager.CorrectScene] = className;
 
-        //giftQueue.Enqueue("לללללל" + " + " + className);
-        //giftQueue.Enqueue("חחחחחחח" + " + " + className);
-        giftText[BonusNum].text = className;
+        allGifts.Add(gameManager.CorrectScene, className);
+
+        if (gameManager.CorrectScene == 4)
+        {
+            PrintClassList();
+
+        }
+
         BonusNum++;
-        //Debug.Log(giftQueue.Dequeue());
+        Debug.Log(giftsText);
+    }
+
+    private void PrintClassList()
+    {
+
+        //giftText[0].text = allGifts[0];
+        //giftText[1].text = allGifts[1];
+        //giftText[2].text = allGifts[2];
+        //giftText[3].text = allGifts[3];
+        giftText[4].text = allGifts[4];
+
     }
 }
+
