@@ -22,6 +22,7 @@ public class AllTexts : MonoBehaviour
         gameManager.ViewClass += CallCoroutine3;
         gameManager.OnWrongClick += NotCorrect3;
         gameManager.OnGift += GetGift3;
+       
         if (gameManager.CorrectScene == 4)
         {
             PrintClassList();
@@ -156,7 +157,7 @@ public class AllTexts : MonoBehaviour
             return;
         }
 
-
+        PlayerPrefs.Save();
          BonusNum++;
     }
     //    allGifts.Add(gameManager.CorrectScene, className);
